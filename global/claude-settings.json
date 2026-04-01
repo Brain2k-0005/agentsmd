@@ -1,0 +1,51 @@
+{
+  "_comment": "TEMPLATE — Copy to ~/.claude/settings.json and customize. WARNING: 'Bash(*)' allows ALL shell commands without prompting (except explicit denies). For tighter control, replace with specific patterns like 'Bash(git *)', 'Bash(npm *)', 'Bash(dotnet *)'. Review the autoMode allow/soft_deny lists and adapt trusted domains to your setup. Back up your existing settings.json before replacing.",
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "64000"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(*)",
+      "Edit",
+      "Read"
+    ],
+    "deny": [
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/*.key)",
+      "Read(**/*.pem)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Bash(rm -rf /)",
+      "Bash(rm -rf ~)",
+      "Bash(sudo *)"
+    ],
+    "defaultMode": "auto"
+  },
+  "autoMode": {
+    "environment": [
+      "**Trusted repo**: The git repository the agent started in"
+    ],
+    "allow": [
+      "Local Operations: File operations within project scope",
+      "Read-Only Operations: GET requests, read-only queries",
+      "Dev Servers: Starting development servers in project directory",
+      "Linting and Formatting: Running linters and formatters",
+      "Test Execution: Running test suites",
+      "Declared Dependencies: Installing from manifest files"
+    ],
+    "soft_deny": [
+      "Git Destructive: Force pushing, deleting remote branches",
+      "Production Deploy: Deploying to production",
+      "Cloud Storage Mass Delete: Bulk deleting cloud storage",
+      "Self-Modification: Modifying agent config files"
+    ]
+  },
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true
+  },
+  "effortLevel": "high"
+}
