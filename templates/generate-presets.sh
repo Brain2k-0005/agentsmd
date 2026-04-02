@@ -65,7 +65,7 @@ while IFS= read -r line || [[ -n "$line" ]]; do
         if [[ "$local_value" == "|" ]]; then
             in_block=true
             # Clear the file
-            > "$TMPDIR_WORK/$current_preset/$current_field"
+            true > "$TMPDIR_WORK/$current_preset/$current_field"
         elif [[ "$local_value" == '""' ]]; then
             printf '' > "$TMPDIR_WORK/$current_preset/$current_field"
         else
@@ -110,18 +110,11 @@ for key in "${preset_keys[@]}"; do
     output_dir="$OUTPUT_BASE/$key"
     output_file="$output_dir/AGENTS.md"
 
-    # Read all field values
+    # Read single-line field values (multi-line fields are read via temp files below)
     p_name="$(read_field "$key" name)"
     p_overview="$(read_field "$key" overview)"
-    p_commands="$(read_field "$key" commands)"
-    p_tech_stack="$(read_field "$key" tech_stack)"
-    p_code_style="$(read_field "$key" code_style)"
-    p_skills="$(read_field "$key" skills)"
     p_test_command="$(read_field "$key" test_command)"
     p_test_framework="$(read_field "$key" test_framework)"
-    p_testing="$(read_field "$key" testing)"
-    p_never_modify="$(read_field "$key" never_modify)"
-    p_external_services="$(read_field "$key" external_services)"
 
     # Default name to key if empty
     [[ -z "$p_name" ]] && p_name="$key"
