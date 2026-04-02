@@ -1,0 +1,49 @@
+{
+  "name": "agentsmd",
+  "version": "1.0.0",
+  "description": "Universal setup for AI coding agents. Ready-made AGENTS.md configs for 37 tech stacks, with self-discovery, planning, cross-tool review, and quality gates.",
+  "bin": {
+    "agentsmd": "./bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "global/",
+    "project/",
+    "modules/",
+    "templates/",
+    "install.sh",
+    "install.ps1"
+  ],
+  "keywords": [
+    "agents",
+    "agentsmd",
+    "agents-md",
+    "ai",
+    "ai-agents",
+    "claude",
+    "claude-code",
+    "codex",
+    "gemini",
+    "copilot",
+    "cursor",
+    "windsurf",
+    "aider",
+    "coding-agent",
+    "autonomous",
+    "config",
+    "cli"
+  ],
+  "author": "Mike Berger",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Brain2k-0005/agentsmd.git"
+  },
+  "homepage": "https://github.com/Brain2k-0005/agentsmd#readme",
+  "bugs": {
+    "url": "https://github.com/Brain2k-0005/agentsmd/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
