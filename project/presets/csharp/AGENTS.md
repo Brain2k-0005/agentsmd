@@ -37,8 +37,8 @@ format:   dotnet format
 ## Skills
 
 - Use `find-skills` to discover skills matching your current task before starting
+- Recommended: `dotnet-best-practices`, `csharp-xunit`, `csharp-async`
 - Install stack-specific skills only when they match the feature area
-- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

@@ -44,7 +44,7 @@ presets:
 
   nextjs:
     name: Next.js
-    overview: A Next.js 15 web application using the App Router, TypeScript, and Tailwind CSS.
+    overview: A Next.js 16 web application using the App Router, TypeScript, and Tailwind CSS.
     commands: |
       install:  npm install
       dev:      npm run dev
@@ -53,8 +53,8 @@ presets:
       lint:     npm run lint
       format:   npx prettier --write .
     tech_stack: |
-      | Language | TypeScript 5.x        |
-      | Framework| Next.js 15 (App Router) |
+      | Language | TypeScript 6.x        |
+      | Framework| Next.js 16 (App Router) |
       | Styling  | Tailwind CSS 4        |
       | Database | Supabase (PostgreSQL) |
       | Auth     | Supabase Auth         |
@@ -67,8 +67,8 @@ presets:
       - Prefer Server Actions over API routes for mutations
     skills: |
       - Use `find-skills` to discover skills matching your current task before starting
+      - Recommended: `nextjs-developer`, `vercel-react-best-practices`, `vercel-composition-patterns`, `shadcn`, `web-design-guidelines`
       - Install stack-specific skills only when they match the feature area
-      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Vitest
     testing: |
@@ -86,7 +86,7 @@ presets:
 
   dotnet:
     name: .NET
-    overview: A .NET 9 Web API using Clean Architecture with Entity Framework Core and SQL Server.
+    overview: A .NET 10 Web API using Clean Architecture with Entity Framework Core and SQL Server.
     commands: |
       install:  dotnet restore
       dev:      dotnet run --project src/Api
@@ -95,9 +95,9 @@ presets:
       lint:     dotnet format --verify-no-changes
       format:   dotnet format
     tech_stack: |
-      | Language | C# 13 / .NET 9           |
+      | Language | C# 14 / .NET 10          |
       | Framework| ASP.NET Core Minimal API  |
-      | ORM      | Entity Framework Core 9   |
+      | ORM      | Entity Framework Core 10  |
       | Database | SQL Server               |
       | Auth     | ASP.NET Identity + JWT   |
       | Hosting  | Azure App Service        |
@@ -110,8 +110,8 @@ presets:
       - Use `CancellationToken` on all async methods
     skills: |
       - Use `find-skills` to discover skills matching your current task before starting
+      - Recommended: `dotnet-best-practices`, `aspnet-minimal-api-openapi`, `ef-core`, `csharp-xunit`, `csharp-async`
       - Install stack-specific skills only when they match the feature area
-      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: dotnet test
     test_framework: xUnit
     testing: |
@@ -130,7 +130,7 @@ presets:
 
   python:
     name: Python
-    overview: A Python 3.12 FastAPI application with SQLAlchemy ORM and PostgreSQL.
+    overview: A Python 3.14 FastAPI application with SQLAlchemy ORM and PostgreSQL.
     commands: |
       install:  uv sync
       dev:      uv run fastapi dev src/main.py
@@ -140,7 +140,7 @@ presets:
       format:   uv run ruff format .
       typecheck: uv run mypy src/
     tech_stack: |
-      | Language    | Python 3.12            |
+      | Language    | Python 3.14            |
       | Framework   | FastAPI                |
       | ORM         | SQLAlchemy 2.x         |
       | Database    | PostgreSQL             |
@@ -156,8 +156,8 @@ presets:
       - Prefer `pathlib.Path` over string path manipulation
     skills: |
       - Use `find-skills` to discover skills matching your current task before starting
+      - Recommended: `sql-optimization`, `sql-code-review`
       - Install stack-specific skills only when they match the feature area
-      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: uv run pytest
     test_framework: pytest + pytest-asyncio
     testing: |
@@ -528,8 +528,8 @@ presets:
       - Record any solution-specific conventions in the root `AGENTS.md`
     skills: |
       - Use `find-skills` to discover skills matching your current task before starting
+      - Recommended: `dotnet-best-practices`, `csharp-xunit`, `csharp-async`
       - Install stack-specific skills only when they match the feature area
-      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: dotnet test
     test_framework: xUnit
     testing: |
@@ -651,8 +651,8 @@ presets:
       - Record design-system and folder rules in the root `AGENTS.md`
     skills: |
       - Use `find-skills` to discover skills matching your current task before starting
+      - Recommended: `vercel-react-best-practices`, `vercel-composition-patterns`, `shadcn`, `web-design-guidelines`
       - Install stack-specific skills only when they match the feature area
-      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Vitest / Jest
     testing: |
@@ -692,8 +692,8 @@ presets:
       - Record design-system and folder rules in the root `AGENTS.md`
     skills: |
       - Use `find-skills` to discover skills matching your current task before starting
+      - Recommended: `web-design-guidelines`, `shadcn`
       - Install stack-specific skills only when they match the feature area
-      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Vitest
     testing: |
@@ -733,8 +733,8 @@ presets:
       - Record Angular-specific conventions in the root `AGENTS.md`
     skills: |
       - Use `find-skills` to discover skills matching your current task before starting
+      - Recommended: `angular-component`, `angular-signals`, `angular-routing`, `angular-forms`, `angular-http`, `angular-testing`
       - Install stack-specific skills only when they match the feature area
-      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Karma / Jest
     testing: |
@@ -815,8 +815,8 @@ presets:
       - Record app-specific rules in the root `AGENTS.md`
     skills: |
       - Use `find-skills` to discover skills matching your current task before starting
+      - Recommended: `web-design-guidelines`
       - Install stack-specific skills only when they match the feature area
-      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Vitest
     testing: |
@@ -856,8 +856,8 @@ presets:
       - Record route, data, and deployment rules in the root `AGENTS.md`
     skills: |
       - Use `find-skills` to discover skills matching your current task before starting
+      - Recommended: `vercel-react-best-practices`, `web-design-guidelines`, `shadcn`
       - Install stack-specific skills only when they match the feature area
-      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Vitest
     testing: |
@@ -897,8 +897,8 @@ presets:
       - Record site and content rules in the root `AGENTS.md`
     skills: |
       - Use `find-skills` to discover skills matching your current task before starting
+      - Recommended: `web-design-guidelines`
       - Install stack-specific skills only when they match the feature area
-      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Vitest
     testing: |
@@ -938,8 +938,8 @@ presets:
       - Record app-specific rules in the root `AGENTS.md`
     skills: |
       - Use `find-skills` to discover skills matching your current task before starting
+      - Recommended: `web-design-guidelines`
       - Install stack-specific skills only when they match the feature area
-      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Vitest
     testing: |
@@ -978,8 +978,8 @@ presets:
       - Record routing and deployment rules in the root `AGENTS.md`
     skills: |
       - Use `find-skills` to discover skills matching your current task before starting
+      - Recommended: `web-design-guidelines`
       - Install stack-specific skills only when they match the feature area
-      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Vitest
     testing: |
@@ -1019,8 +1019,8 @@ presets:
       - Record architecture and layering rules in the root `AGENTS.md`
     skills: |
       - Use `find-skills` to discover skills matching your current task before starting
+      - Recommended: `sql-optimization`, `sql-code-review`
       - Install stack-specific skills only when they match the feature area
-      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Jest
     testing: |
@@ -1060,8 +1060,8 @@ presets:
       - Record project-specific routing rules in the root `AGENTS.md`
     skills: |
       - Use `find-skills` to discover skills matching your current task before starting
+      - Recommended: `sql-optimization`
       - Install stack-specific skills only when they match the feature area
-      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Jest / Mocha
     testing: |
@@ -1100,8 +1100,8 @@ presets:
       - Record queue, event, and policy rules in the root `AGENTS.md`
     skills: |
       - Use `find-skills` to discover skills matching your current task before starting
+      - Recommended: `sql-optimization`, `sql-code-review`
       - Install stack-specific skills only when they match the feature area
-      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: vendor/bin/pest
     test_framework: Pest
     testing: |
@@ -1142,8 +1142,8 @@ presets:
       - Record API and environment rules in the root `AGENTS.md`
     skills: |
       - Use `find-skills` to discover skills matching your current task before starting
+      - Recommended: `sql-optimization`, `sql-code-review`
       - Install stack-specific skills only when they match the feature area
-      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: uv run pytest
     test_framework: pytest
     testing: |
@@ -1182,8 +1182,8 @@ presets:
       - Record admin, migration, and settings rules in the root `AGENTS.md`
     skills: |
       - Use `find-skills` to discover skills matching your current task before starting
+      - Recommended: `sql-optimization`, `sql-code-review`
       - Install stack-specific skills only when they match the feature area
-      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: uv run python manage.py test
     test_framework: Django test / pytest
     testing: |
@@ -1303,8 +1303,8 @@ presets:
       - Record app-specific rules in the root `AGENTS.md`
     skills: |
       - Use `find-skills` to discover skills matching your current task before starting
+      - Recommended: `web-design-guidelines`
       - Install stack-specific skills only when they match the feature area
-      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Vitest
     testing: |
@@ -1343,8 +1343,8 @@ presets:
       - Record app and deployment rules in the root `AGENTS.md`
     skills: |
       - Use `find-skills` to discover skills matching your current task before starting
+      - Recommended: `vercel-react-best-practices`, `web-design-guidelines`
       - Install stack-specific skills only when they match the feature area
-      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Vitest
     testing: |
@@ -1383,8 +1383,8 @@ presets:
       - Record permission and window rules in the root `AGENTS.md`
     skills: |
       - Use `find-skills` to discover skills matching your current task before starting
+      - Recommended: `web-design-guidelines`
       - Install stack-specific skills only when they match the feature area
-      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: cargo test
     test_framework: cargo test
     testing: |

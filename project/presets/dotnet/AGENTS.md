@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-A .NET 9 Web API using Clean Architecture with Entity Framework Core and SQL Server.
+A .NET 10 Web API using Clean Architecture with Entity Framework Core and SQL Server.
 
 ## Commands
 
@@ -19,9 +19,9 @@ format:   dotnet format
 
 | Layer | Technology |
 |-------|------------|
-| Language | C# 13 / .NET 9           |
+| Language | C# 14 / .NET 10          |
 | Framework| ASP.NET Core Minimal API  |
-| ORM      | Entity Framework Core 9   |
+| ORM      | Entity Framework Core 10  |
 | Database | SQL Server               |
 | Auth     | ASP.NET Identity + JWT   |
 | Hosting  | Azure App Service        |
@@ -38,8 +38,8 @@ format:   dotnet format
 ## Skills
 
 - Use `find-skills` to discover skills matching your current task before starting
+- Recommended: `dotnet-best-practices`, `aspnet-minimal-api-openapi`, `ef-core`, `csharp-xunit`, `csharp-async`
 - Install stack-specific skills only when they match the feature area
-- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-A Python 3.12 FastAPI application with SQLAlchemy ORM and PostgreSQL.
+A Python 3.14 FastAPI application with SQLAlchemy ORM and PostgreSQL.
 
 ## Commands
 
@@ -20,7 +20,7 @@ typecheck: uv run mypy src/
 
 | Layer | Technology |
 |-------|------------|
-| Language    | Python 3.12            |
+| Language    | Python 3.14            |
 | Framework   | FastAPI                |
 | ORM         | SQLAlchemy 2.x         |
 | Database    | PostgreSQL             |
@@ -40,8 +40,8 @@ typecheck: uv run mypy src/
 ## Skills
 
 - Use `find-skills` to discover skills matching your current task before starting
+- Recommended: `sql-optimization`, `sql-code-review`
 - Install stack-specific skills only when they match the feature area
-- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

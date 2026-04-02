@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-A Next.js 15 web application using the App Router, TypeScript, and Tailwind CSS.
+A Next.js 16 web application using the App Router, TypeScript, and Tailwind CSS.
 
 ## Commands
 
@@ -19,8 +19,8 @@ format:   npx prettier --write .
 
 | Layer | Technology |
 |-------|------------|
-| Language | TypeScript 5.x        |
-| Framework| Next.js 15 (App Router) |
+| Language | TypeScript 6.x        |
+| Framework| Next.js 16 (App Router) |
 | Styling  | Tailwind CSS 4        |
 | Database | Supabase (PostgreSQL) |
 | Auth     | Supabase Auth         |
@@ -37,8 +37,8 @@ format:   npx prettier --write .
 ## Skills
 
 - Use `find-skills` to discover skills matching your current task before starting
+- Recommended: `nextjs-developer`, `vercel-react-best-practices`, `vercel-composition-patterns`, `shadcn`, `web-design-guidelines`
 - Install stack-specific skills only when they match the feature area
-- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 
