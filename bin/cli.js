@@ -140,11 +140,11 @@ function printHelp() {
 agentsmd - Universal setup for AI coding agents
 
 Usage:
-  npx agentsmd                        Interactive installer
-  npx agentsmd --all                   Install everything (global + project + settings)
-  npx agentsmd --preset <stack>        Install a specific project preset
-  npx agentsmd --list-presets          Show all available presets
-  npx agentsmd --dry-run               Preview what would be installed
+  npx @brain2k/agentsmd                        Interactive installer
+  npx @brain2k/agentsmd --all                   Install everything (global + project + settings)
+  npx @brain2k/agentsmd --preset <stack>        Install a specific project preset
+  npx @brain2k/agentsmd --list-presets          Show all available presets
+  npx @brain2k/agentsmd --dry-run               Preview what would be installed
 
 Options:
   --all                     Install global config, project preset, and settings
@@ -156,9 +156,9 @@ Options:
   --help, -h                Show this help
 
 Examples:
-  npx agentsmd --all --preset nextjs
-  npx agentsmd --preset python --dry-run
-  npx agentsmd --all --disable-modules tdd,agent-teams
+  npx @brain2k/agentsmd --all --preset nextjs
+  npx @brain2k/agentsmd --preset python --dry-run
+  npx @brain2k/agentsmd --all --disable-modules tdd,agent-teams
 
 Learn more: https://github.com/Brain2k-0005/agentsmd
 `);

@@ -7,7 +7,7 @@ Universal setup for AI coding agents that learn, plan, and ship code autonomousl
 ## Get Started in 60 Seconds
 
 ```bash
-npx agentsmd
+npx @brain2k/agentsmd
 ```
 
 That's it. One command. Your AI coding agent will now self-discover your project, plan before coding, and verify its own work -- no hand-holding required.
@@ -15,10 +15,10 @@ That's it. One command. Your AI coding agent will now self-discover your project
 ### More examples
 
 ```bash
-npx agentsmd --all                       # Install everything at once
-npx agentsmd --preset nextjs             # Set up a Next.js project
-npx agentsmd --preset python --dry-run   # Preview without writing files
-npx agentsmd --list-presets              # See all 37 available stacks
+npx @brain2k/agentsmd --all                       # Install everything at once
+npx @brain2k/agentsmd --preset nextjs             # Set up a Next.js project
+npx @brain2k/agentsmd --preset python --dry-run   # Preview without writing files
+npx @brain2k/agentsmd --list-presets              # See all 37 available stacks
 ```
 
 ### Alternative: Clone and run manually
@@ -104,7 +104,7 @@ You install a global config once. Every project you open gets an autonomous agen
 
 ```
 agentsmd/
-├── package.json                   # npm package (npx agentsmd)
+├── package.json                   # npm package (npx @brain2k/agentsmd)
 ├── bin/cli.js                     # CLI entry point
 ├── README.md                      # This file
 ├── install.sh                     # Bash installer (macOS/Linux/WSL)

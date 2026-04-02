@@ -1,5 +1,5 @@
 {
-  "name": "agentsmd",
+  "name": "@brain2k/agentsmd",
   "version": "1.0.0",
   "description": "Universal setup for AI coding agents. Ready-made AGENTS.md configs for 37 tech stacks, with self-discovery, planning, cross-tool review, and quality gates.",
   "bin": {
