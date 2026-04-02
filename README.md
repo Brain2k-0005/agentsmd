@@ -1,5 +1,9 @@
 # agentsmd
 
+[![npm version](https://img.shields.io/npm/v/@brain2k/agentsmd)](https://www.npmjs.com/package/@brain2k/agentsmd)
+[![CI](https://github.com/Brain2k-0005/agentsmd/actions/workflows/ci.yml/badge.svg)](https://github.com/Brain2k-0005/agentsmd/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 Universal setup for AI coding agents that learn, plan, and ship code autonomously.
 
 ---
