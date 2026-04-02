@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ShellCheck
+        run: sudo apt-get install -y shellcheck
+      - name: Lint install.sh
+        run: shellcheck install.sh
+      - name: Lint generate-presets.sh
+        run: shellcheck templates/generate-presets.sh
+
+  test:
+    name: Installer Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install bats
+        run: |
+          git clone https://github.com/bats-core/bats-core.git /tmp/bats
+          sudo /tmp/bats/install.sh /usr/local
+      - name: Run tests
+        run: bats tests/install_test.bats
+
+  markdown:
+    name: Markdown Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install markdownlint
+        run: npm install -g markdownlint-cli
+      - name: Lint markdown files
+        run: markdownlint '**/*.md' --disable MD013 MD033 MD041 || true
+
+  preset-drift:
+    name: Preset Drift Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate presets
+        run: bash templates/generate-presets.sh
+      - name: Check for drift
+        run: |
+          if ! git diff --exit-code project/presets/; then
+            echo "::error::Preset files have drifted from the template. Run 'bash templates/generate-presets.sh' and commit."
+            exit 1
+          fi

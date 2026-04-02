@@ -1,0 +1,1530 @@
+# Preset Configuration for AGENTS.md Generation
+# Each preset defines all variables needed by preset-template.md
+# Generated files go to project/presets/{key}/AGENTS.md
+
+presets:
+
+  generic:
+    name: Generic
+    overview: A generic software project. Use this preset when no more specific stack is detected.
+    commands: |
+      install:  # fill in from package manager or build tool
+      dev:      # fill in the local development command
+      build:    # fill in the production build command
+      test:     # fill in the test command
+      lint:     # fill in the lint command
+      format:   # fill in the format command
+    tech_stack: |
+      | Language    |            |
+      | Framework   |            |
+      | Database    |            |
+      | Auth        |            |
+      | Hosting     |            |
+      | Package Mgr |            |
+    code_style: |
+      - Keep the preset aligned with the repository's real conventions
+      - Prefer simple, explicit code over clever abstractions
+      - Document any stack-specific constraints in the project root `AGENTS.md`
+      - Verify exact versions from manifests before making assumptions
+    skills: |
+      - Use `find-skills` or the platform equivalent before non-trivial work
+      - Install stack-specific skills only when they are relevant to this repository
+      - Record any useful project-only skill dependencies in the project root `AGENTS.md`
+    test_command: fill in the real command
+    test_framework: fill in
+    testing: |
+      - Unit tests: fill in the real location
+      - Integration tests: fill in the real location
+      - E2E tests: fill in the real location
+    never_modify: |
+      - Generated files
+      - Build outputs
+      - Secrets or local environment files
+    external_services: ""
+
+  nextjs:
+    name: Next.js
+    overview: A Next.js 15 web application using the App Router, TypeScript, and Tailwind CSS.
+    commands: |
+      install:  npm install
+      dev:      npm run dev
+      build:    npm run build
+      test:     npm test
+      lint:     npm run lint
+      format:   npx prettier --write .
+    tech_stack: |
+      | Language | TypeScript 5.x        |
+      | Framework| Next.js 15 (App Router) |
+      | Styling  | Tailwind CSS 4        |
+      | Database | Supabase (PostgreSQL) |
+      | Auth     | Supabase Auth         |
+      | Hosting  | Vercel                |
+    code_style: |
+      - Use Server Components by default; add "use client" only when needed
+      - Named exports only - no default exports except `page.tsx` and `layout.tsx`
+      - Co-locate route-specific components with their page
+      - Use `cn()` for conditional class merging
+      - Prefer Server Actions over API routes for mutations
+    skills: |
+      - UI work: `web-design-guidelines`, `vercel-react-best-practices`, `vercel-composition-patterns`, `shadcn`
+      - Stack work: install project-specific skills only when they match the feature area
+      - Review the matching preset before editing route, data, or auth code
+    test_command: npm test
+    test_framework: Vitest
+    testing: |
+      - Unit tests: co-located as `*.test.ts` next to source files
+      - E2E tests: `tests/e2e/` using Playwright
+      - All API handlers and auth paths must have tests
+    never_modify: |
+      - `supabase/migrations/` - migrations are append-only
+      - `public/` - static assets managed separately
+      - `.env.local` - contains secrets, never commit
+    external_services: |
+      **External services:**
+      - Supabase - use local dev instance for testing, never hit production
+      - Stripe - test keys only in development
+
+  dotnet:
+    name: .NET
+    overview: A .NET 9 Web API using Clean Architecture with Entity Framework Core and SQL Server.
+    commands: |
+      install:  dotnet restore
+      dev:      dotnet run --project src/Api
+      build:    dotnet build
+      test:     dotnet test
+      lint:     dotnet format --verify-no-changes
+      format:   dotnet format
+    tech_stack: |
+      | Language | C# 13 / .NET 9           |
+      | Framework| ASP.NET Core Minimal API  |
+      | ORM      | Entity Framework Core 9   |
+      | Database | SQL Server               |
+      | Auth     | ASP.NET Identity + JWT   |
+      | Hosting  | Azure App Service        |
+    code_style: |
+      - Clean Architecture layers: Api -> Application -> Domain -> Infrastructure
+      - All database access via repository interfaces in Application, implementations in Infrastructure
+      - Use record types for DTOs and value objects
+      - Prefer `IResult` return types in endpoint handlers
+      - No business logic in controllers/endpoints - delegate to Application services
+      - Use `CancellationToken` on all async methods
+    skills: |
+      - API work: `aspnet-minimal-api-openapi`
+      - Testing: `csharp-xunit`, `csharp-async`
+      - Data access: `ef-core`
+      - General .NET guidance: `dotnet-best-practices`
+      - Keep project-specific skills documented here as the codebase evolves
+    test_command: dotnet test
+    test_framework: xUnit
+    testing: |
+      - Unit tests: `tests/UnitTests/` mirroring src structure
+      - Integration tests: `tests/IntegrationTests/` using WebApplicationFactory
+      - All public API endpoints must have integration tests
+      - Use NSubstitute for mocking, FluentAssertions for assertions
+    never_modify: |
+      - `src/Domain/` entities without updating corresponding migrations
+      - `Migrations/` - EF migrations are append-only, create new ones instead
+      - `appsettings.Production.json` - production config managed by CI/CD
+    external_services: |
+      **External services:**
+      - SQL Server - use LocalDB or Docker for local dev
+      - Azure - never deploy from local machine, CI/CD only
+
+  python:
+    name: Python
+    overview: A Python 3.12 FastAPI application with SQLAlchemy ORM and PostgreSQL.
+    commands: |
+      install:  uv sync
+      dev:      uv run fastapi dev src/main.py
+      build:    uv build
+      test:     uv run pytest
+      lint:     uv run ruff check .
+      format:   uv run ruff format .
+      typecheck: uv run mypy src/
+    tech_stack: |
+      | Language    | Python 3.12            |
+      | Framework   | FastAPI                |
+      | ORM         | SQLAlchemy 2.x         |
+      | Database    | PostgreSQL             |
+      | Auth        | JWT via python-jose    |
+      | Hosting     | Docker + Railway/Fly.io |
+      | Package Mgr | uv                     |
+    code_style: |
+      - Type hints on all function signatures - `mypy --strict` must pass
+      - Use Pydantic v2 models for all request/response schemas
+      - Dependency injection via FastAPI `Depends()`
+      - Async endpoints and database sessions throughout
+      - One module per domain concept in `src/domains/`
+      - Prefer `pathlib.Path` over string path manipulation
+    skills: |
+      - Testing and verification skills should be installed globally
+      - Add project-specific skills here if the stack grows beyond the base FastAPI workflow
+      - Use the matching preset before introducing new abstractions
+    test_command: uv run pytest
+    test_framework: pytest + pytest-asyncio
+    testing: |
+      - Unit tests: `tests/unit/` mirroring src structure
+      - Integration tests: `tests/integration/` with test database
+      - Fixtures in `tests/conftest.py` - shared database session, test client
+      - All API endpoints must have integration tests
+    never_modify: |
+      - `alembic/versions/` - migrations are append-only
+      - `.env` - secrets, never commit
+      - `src/generated/` - auto-generated OpenAPI client, do not edit
+    external_services: |
+      **External services:**
+      - PostgreSQL - use Docker Compose for local dev
+      - Redis - use fakeredis in tests
+
+  nodejs:
+    name: Node.js
+    overview: A Node.js application or service, typically using TypeScript, npm/pnpm, and a conventional package manifest.
+    commands: |
+      install:  npm install
+      dev:      npm run dev
+      build:    npm run build
+      test:     npm test
+      lint:     npm run lint
+      format:   npx prettier --write .
+    tech_stack: |
+      | Language    | TypeScript / JavaScript |
+      | Framework   | Node.js service or app |
+      | Database    | Fill in |
+      | Auth        | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | npm / pnpm / yarn |
+    code_style: |
+      - Prefer explicit async boundaries and avoid callback-style APIs unless required
+      - Keep server code and client code in separate folders when both exist
+      - Use one top-level module per domain feature
+      - Prefer ESM unless the project already uses CommonJS
+      - Document any runtime-specific rules in the root `AGENTS.md`
+    skills: |
+      - Install project skills for the relevant framework or runtime only when needed
+      - Use `find-skills` for debugging, testing, review, and automation workflows
+      - Keep stack-specific conventions in this preset instead of spreading them across files
+    test_command: npm test
+    test_framework: project test runner
+    testing: |
+      - Unit tests: `*.test.ts` or `*.spec.ts`
+      - Integration tests: `tests/integration/`
+      - E2E tests: `tests/e2e/`
+    never_modify: |
+      - `node_modules/`
+      - build outputs such as `dist/` or `.next/`
+      - `.env` files or checked-in secrets
+    external_services: |
+      **External services:**
+      - Use local or sandbox endpoints for any hosted API
+      - Never commit credentials into config files
+
+  go:
+    name: Go
+    overview: A Go application, service, or CLI built around standard Go modules and the Go toolchain.
+    commands: |
+      install:  go mod download
+      dev:      go run ./...
+      build:    go build ./...
+      test:     go test ./...
+      lint:     golangci-lint run
+      format:   gofmt -w .
+    tech_stack: |
+      | Language    | Go |
+      | Framework   | Standard library or project framework |
+      | Database    | Fill in |
+      | Auth        | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | Go modules |
+    code_style: |
+      - Keep packages small and focused
+      - Export only what is needed by other packages
+      - Prefer simple error handling over abstraction-heavy wrappers
+      - Use context-aware APIs for network and database work
+      - Document concurrency or goroutine ownership rules in the root `AGENTS.md`
+    skills: |
+      - Use `find-skills` for testing, review, and deployment workflows
+      - Add Go-specific skills only if the repo adopts a nonstandard framework or test pattern
+      - Keep linting and formatting commands aligned with the repo's actual toolchain
+    test_command: go test ./...
+    test_framework: go test
+    testing: |
+      - Unit tests: `_test.go` files beside the source package
+      - Integration tests: package-specific directories or tagged tests
+      - E2E tests: project-specific if present
+    never_modify: |
+      - `vendor/` unless the repo intentionally vendors dependencies
+      - generated code directories
+      - secret files or local environment files
+    external_services: |
+      **External services:**
+      - Use local test doubles or containers for databases and queues
+
+  rust:
+    name: Rust
+    overview: A Rust application, library, or CLI using Cargo and the standard Rust ecosystem.
+    commands: |
+      install:  cargo fetch
+      dev:      cargo run
+      build:    cargo build
+      test:     cargo test
+      lint:     cargo clippy --all-targets --all-features
+      format:   cargo fmt
+    tech_stack: |
+      | Language    | Rust |
+      | Framework   | Standard library or project framework |
+      | Database    | Fill in |
+      | Auth        | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | Cargo |
+    code_style: |
+      - Prefer ownership and borrowing over cloning unless cloning is deliberate
+      - Use `Result` and `?` for error propagation
+      - Keep modules and crates small and explicit
+      - Avoid unsafe code unless the repo already requires it
+      - Record async runtime or feature-flag rules in the root `AGENTS.md`
+    skills: |
+      - Use `find-skills` for review, testing, and build workflows
+      - Add Rust-specific skills only when the crate depends on a special framework
+      - Keep lint and format requirements in sync with Cargo configuration
+    test_command: cargo test
+    test_framework: cargo test
+    testing: |
+      - Unit tests: `#[cfg(test)]` in the same module or adjacent test modules
+      - Integration tests: `tests/`
+      - Benchmarks or examples: only if the repository uses them
+    never_modify: |
+      - `target/`
+      - generated bindings or build artifacts
+      - secrets, tokens, or local config files
+    external_services: |
+      **External services:**
+      - Use local test fixtures or mocks for networked dependencies
+
+  java:
+    name: Java
+    overview: A Java application or service built with Maven or Gradle.
+    commands: |
+      install:  mvn dependency:go-offline
+      dev:      mvn spring-boot:run
+      build:    mvn package
+      test:     mvn test
+      lint:     mvn checkstyle:check
+      format:   mvn spotless:apply
+    tech_stack: |
+      | Language    | Java |
+      | Framework   | Spring Boot or project framework |
+      | Database    | Fill in |
+      | Auth        | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | Maven / Gradle |
+    code_style: |
+      - Use packages that mirror bounded contexts or modules
+      - Prefer constructor injection for dependencies
+      - Keep controllers thin and move business logic into services
+      - Use immutable data carriers when practical
+      - Document any framework conventions in the root `AGENTS.md`
+    skills: |
+      - Use `find-skills` for testing, review, build, and deployment workflows
+      - Add Java-specific skills only when the repo standardizes on a framework
+      - Keep code generation or annotation rules centralized in this preset
+    test_command: mvn test
+    test_framework: JUnit
+    testing: |
+      - Unit tests: `src/test/java/`
+      - Integration tests: framework-specific test directories or tags
+      - E2E tests: only if the repository defines them
+    never_modify: |
+      - `target/`
+      - generated sources
+      - production secrets or local environment files
+    external_services: |
+      **External services:**
+      - Use test containers or local emulators where possible
+
+  ruby:
+    name: Ruby
+    overview: A Ruby application, gem, or service built with Bundler and a conventional Ruby stack.
+    commands: |
+      install:  bundle install
+      dev:      bundle exec ruby bin/dev
+      build:    bundle exec rake build
+      test:     bundle exec rspec
+      lint:     bundle exec rubocop
+      format:   bundle exec rubocop -A
+    tech_stack: |
+      | Language    | Ruby |
+      | Framework   | Rails / Sinatra / project framework |
+      | Database    | Fill in |
+      | Auth        | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | Bundler |
+    code_style: |
+      - Prefer explicit service objects when business logic grows beyond a model
+      - Keep controllers thin and views simple
+      - Use frozen string literals if the project already does
+      - Prefer conventional Ruby/Rails directory structure
+      - Put repo-specific conventions in the root `AGENTS.md`
+    skills: |
+      - Use `find-skills` for testing, review, and automation workflows
+      - Add Ruby-specific skills only when the stack requires a framework-specific pattern
+      - Keep style and linting rules aligned with the repository's formatter and linter
+    test_command: bundle exec rspec
+    test_framework: RSpec
+    testing: |
+      - Unit tests: `spec/`
+      - Integration tests: request or feature specs when present
+      - System tests: only if the app uses them
+    never_modify: |
+      - `vendor/bundle/`
+      - generated assets
+      - `.env` or secret files
+    external_services: |
+      **External services:**
+      - Use test credentials only
+      - Keep mail, storage, and third-party APIs in sandbox mode during development
+
+  php:
+    name: PHP
+    overview: A PHP application or service using Composer and a conventional PHP framework or runtime.
+    commands: |
+      install:  composer install
+      dev:      php artisan serve
+      build:    composer dump-autoload -o
+      test:     vendor/bin/phpunit
+      lint:     vendor/bin/phpstan analyse
+      format:   vendor/bin/pint
+    tech_stack: |
+      | Language    | PHP |
+      | Framework   | Laravel / Symfony / project framework |
+      | Database    | Fill in |
+      | Auth        | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | Composer |
+    code_style: |
+      - Keep controllers thin and move logic into services or actions
+      - Prefer typed properties and return types where the project supports them
+      - Use framework conventions instead of custom abstractions unless justified
+      - Document any environment or runtime assumptions in the root `AGENTS.md`
+    skills: |
+      - Use `find-skills` for testing, review, deployment, and automation workflows
+      - Add framework-specific skills only when the repository standardizes on them
+      - Keep code style and static analysis rules aligned with the repo tools
+    test_command: vendor/bin/phpunit
+    test_framework: PHPUnit
+    testing: |
+      - Unit tests: `tests/Unit/`
+      - Feature tests: `tests/Feature/`
+      - E2E tests: only if the repository defines them
+    never_modify: |
+      - `vendor/`
+      - generated cache or build artifacts
+      - secret environment files
+    external_services: |
+      **External services:**
+      - Use sandbox credentials and local services for development
+
+  c:
+    name: C
+    overview: A C application, library, or systems component built with the standard native toolchain.
+    commands: |
+      install:  cmake -S . -B build
+      dev:      cmake --build build --target run
+      build:    cmake --build build
+      test:     ctest --test-dir build
+      lint:     clang-tidy
+      format:   clang-format -i *.c *.h
+    tech_stack: |
+      | Language    | C |
+      | Framework   | Fill in |
+      | Database    | Fill in |
+      | Auth        | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | CMake / Make |
+    code_style: |
+      - Prefer explicit memory ownership and cleanup
+      - Keep header files minimal and focused
+      - Use small functions with clear responsibilities
+      - Avoid hidden globals unless the project already depends on them
+      - Record build-system rules in the root `AGENTS.md`
+    skills: |
+      - Use `find-skills` for testing, review, and build workflows
+      - Add C-specific skills only when the repository adopts extra tooling
+      - Keep compiler and formatter settings aligned with the project
+    test_command: ctest --test-dir build
+    test_framework: CTest
+    testing: |
+      - Unit tests: project-specific test folders or files
+      - Integration tests: project-specific if present
+      - E2E tests: only if the repo defines them
+    never_modify: |
+      - `build/`
+      - generated headers or artifacts
+      - secrets or environment files
+    external_services: |
+      **External services:**
+      - Use local test doubles or sandbox endpoints for development
+
+  cpp:
+    name: C++
+    overview: A C++ application, library, or systems component built with the standard native toolchain.
+    commands: |
+      install:  cmake -S . -B build
+      dev:      cmake --build build --target run
+      build:    cmake --build build
+      test:     ctest --test-dir build
+      lint:     clang-tidy
+      format:   clang-format -i *.cpp *.hpp *.h *.cc *.cxx
+    tech_stack: |
+      | Language    | C++ |
+      | Framework   | Fill in |
+      | Database    | Fill in |
+      | Auth        | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | CMake / Conan / vcpkg |
+    code_style: |
+      - Prefer RAII and explicit ownership
+      - Use modern C++ language features when the project supports them
+      - Keep headers small and avoid unnecessary coupling
+      - Make build flags and standard version explicit in the root `AGENTS.md`
+      - Keep generated code and vendored dependencies isolated
+    skills: |
+      - Use `find-skills` for testing, review, and build workflows
+      - Add C++-specific skills only when the repository standardizes on them
+      - Keep formatter, sanitizer, and static analysis settings aligned with the project
+    test_command: ctest --test-dir build
+    test_framework: CTest
+    testing: |
+      - Unit tests: project-specific test folders or files
+      - Integration tests: project-specific if present
+      - E2E tests: only if the repo defines them
+    never_modify: |
+      - `build/`
+      - generated headers or artifacts
+      - secrets or environment files
+    external_services: |
+      **External services:**
+      - Use local services or mocks for any networked dependency
+
+  csharp:
+    name: "C#"
+    overview: A C# application or service, typically using the .NET SDK, modern language features, and the standard dotnet toolchain.
+    commands: |
+      install:  dotnet restore
+      dev:      dotnet run
+      build:    dotnet build
+      test:     dotnet test
+      lint:     dotnet format --verify-no-changes
+      format:   dotnet format
+    tech_stack: |
+      | Language    | C# |
+      | Framework   | ASP.NET Core / project framework |
+      | Database    | Fill in |
+      | Auth        | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | dotnet |
+    code_style: |
+      - Prefer nullable reference types and explicit async APIs
+      - Keep controllers thin and push logic into services
+      - Use records for DTOs when immutable data transfer is appropriate
+      - Align namespaces with the folder structure
+      - Record any solution-specific conventions in the root `AGENTS.md`
+    skills: |
+      - Use `aspnet-minimal-api-openapi`, `csharp-xunit`, `csharp-async`, `dotnet-best-practices`, and `ef-core` when relevant
+      - Use `find-skills` for testing, review, and automation workflows
+      - Add .NET-specific skills when the repository introduces extra infrastructure
+    test_command: dotnet test
+    test_framework: xUnit
+    testing: |
+      - Unit tests: `tests/UnitTests/`
+      - Integration tests: `tests/IntegrationTests/`
+      - E2E tests: only if the repository defines them
+    never_modify: |
+      - `bin/` and `obj/`
+      - migration or generated code outputs
+      - secrets, tokens, or local environment files
+    external_services: |
+      **External services:**
+      - Use test or local endpoints for any networked dependency
+
+  kotlin:
+    name: Kotlin
+    overview: A Kotlin application, service, or multiplatform project using the Kotlin toolchain and a conventional JVM or Android stack.
+    commands: |
+      install:  ./gradlew dependencies
+      dev:      ./gradlew run
+      build:    ./gradlew build
+      test:     ./gradlew test
+      lint:     ./gradlew ktlintCheck
+      format:   ./gradlew ktlintFormat
+    tech_stack: |
+      | Language    | Kotlin |
+      | Framework   | Spring Boot / Android / project framework |
+      | Database    | Fill in |
+      | Auth        | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | Gradle |
+    code_style: |
+      - Prefer immutable vals and data classes
+      - Keep coroutine boundaries explicit
+      - Use package structure that mirrors modules or features
+      - Avoid overusing extension functions when plain functions are clearer
+      - Document platform-specific rules in the root `AGENTS.md`
+    skills: |
+      - Use `find-skills` for testing, review, and build workflows
+      - Add Kotlin-specific skills when the repo standardizes on a framework
+      - Keep formatter and lint configuration in sync with this preset
+    test_command: ./gradlew test
+    test_framework: JUnit / Kotest
+    testing: |
+      - Unit tests: `src/test/`
+      - Integration tests: `src/integrationTest/` or project-specific folders
+      - Android tests: only if the repo uses them
+    never_modify: |
+      - `.gradle/`
+      - build outputs such as `build/`
+      - generated sources or secrets
+    external_services: |
+      **External services:**
+      - Use test containers or local mocks for backend dependencies
+
+  swift:
+    name: Swift
+    overview: A Swift application, package, or app target using Swift Package Manager or Xcode.
+    commands: |
+      install:  swift package resolve
+      dev:      swift run
+      build:    swift build
+      test:     swift test
+      lint:     swiftlint
+      format:   swiftformat .
+    tech_stack: |
+      | Language    | Swift |
+      | Framework   | SwiftUI / Foundation / project framework |
+      | Database    | Fill in |
+      | Auth        | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | SwiftPM |
+    code_style: |
+      - Prefer value types and explicit protocol boundaries
+      - Keep view logic and business logic separate
+      - Use async/await for concurrency when available
+      - Align target and module names with folders
+      - Document platform-specific rules in the root `AGENTS.md`
+    skills: |
+      - Use `find-skills` for testing, review, and automation workflows
+      - Add Swift-specific skills only if the repository adopts extra tooling
+      - Keep this preset aligned with the repo's actual package manager and formatter
+    test_command: swift test
+    test_framework: XCTest
+    testing: |
+      - Unit tests: `Tests/`
+      - UI tests: project-specific if present
+      - Integration tests: only if the repository defines them
+    never_modify: |
+      - `.build/`
+      - derived data or generated Xcode artifacts
+      - secrets or local configuration files
+    external_services: |
+      **External services:**
+      - Use sandbox endpoints and test credentials only
+
+  react:
+    name: React
+    overview: A React application, typically TypeScript-based, with a component-driven frontend workflow.
+    commands: |
+      install:  npm install
+      dev:      npm run dev
+      build:    npm run build
+      test:     npm test
+      lint:     npm run lint
+      format:   npx prettier --write .
+    tech_stack: |
+      | Language    | TypeScript / JavaScript |
+      | Framework   | React |
+      | State       | Fill in |
+      | Testing     | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | npm / pnpm / yarn |
+    code_style: |
+      - Prefer function components and hooks
+      - Keep component props minimal and explicit
+      - Co-locate component tests with the component when practical
+      - Avoid premature abstraction in UI code
+      - Record design-system and folder rules in the root `AGENTS.md`
+    skills: |
+      - Use `web-design-guidelines`, `vercel-react-best-practices`, `vercel-composition-patterns`, and `shadcn` for UI work when available
+      - Use `find-skills` before testing, review, and automation work
+      - Add React-specific skills only if the repository standardizes on them
+    test_command: npm test
+    test_framework: Vitest / Jest
+    testing: |
+      - Unit tests: `*.test.tsx` or `*.spec.tsx`
+      - Integration tests: `tests/integration/` if present
+      - E2E tests: `tests/e2e/` if present
+    never_modify: |
+      - build outputs such as `dist/` or `build/`
+      - generated assets
+      - `.env` and secret files
+    external_services: |
+      **External services:**
+      - Use local mocks or sandbox APIs for development
+
+  vue:
+    name: Vue
+    overview: A Vue application, typically using TypeScript, component SFCs, and a modern Vite-based workflow.
+    commands: |
+      install:  npm install
+      dev:      npm run dev
+      build:    npm run build
+      test:     npm test
+      lint:     npm run lint
+      format:   npx prettier --write .
+    tech_stack: |
+      | Language    | TypeScript / JavaScript |
+      | Framework   | Vue |
+      | State       | Fill in |
+      | Testing     | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | npm / pnpm / yarn |
+    code_style: |
+      - Prefer `<script setup>` for new single-file components
+      - Keep template logic simple and extracted into composables when needed
+      - Use component props and emits explicitly
+      - Avoid mixing framework-specific patterns across components
+      - Record design-system and folder rules in the root `AGENTS.md`
+    skills: |
+      - Use `web-design-guidelines` for UI work when available
+      - Use `find-skills` for testing, review, and automation workflows
+      - Add Vue-specific skills only if the repository standardizes on them
+    test_command: npm test
+    test_framework: Vitest
+    testing: |
+      - Unit tests: `*.test.ts` or `*.spec.ts`
+      - Integration tests: project-specific if present
+      - E2E tests: project-specific if present
+    never_modify: |
+      - build outputs such as `dist/`
+      - generated artifacts
+      - `.env` and secret files
+    external_services: |
+      **External services:**
+      - Use sandbox or mock endpoints for local development
+
+  angular:
+    name: Angular
+    overview: A modern Angular application using the Angular CLI, standalone components, and TypeScript.
+    commands: |
+      install:  npm install
+      dev:      npm start
+      build:    npm run build
+      test:     npm test
+      lint:     npm run lint
+      format:   npx prettier --write .
+    tech_stack: |
+      | Language    | TypeScript |
+      | Framework   | Angular |
+      | State       | Fill in |
+      | Testing     | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | npm / pnpm / yarn |
+    code_style: |
+      - Prefer standalone components and modern Angular APIs
+      - Keep templates declarative and move logic into services or signals
+      - Use feature folders and clear route boundaries
+      - Keep RxJS usage intentional and minimal
+      - Record Angular-specific conventions in the root `AGENTS.md`
+    skills: |
+      - Use `angular-component`, `angular-routing`, `angular-signals`, `angular-http`, `angular-forms`, `angular-testing`, and `angular-tooling` when available
+      - Use `find-skills` before broader testing, review, and automation workflows
+      - Add Angular-specific skills only when they are relevant to the repo
+    test_command: npm test
+    test_framework: Karma / Jest
+    testing: |
+      - Unit tests: `*.spec.ts`
+      - Integration tests: project-specific if present
+      - E2E tests: `e2e/` or project-specific if present
+    never_modify: |
+      - `dist/`
+      - generated Angular artifacts
+      - `.env` and secret files
+    external_services: |
+      **External services:**
+      - Use local or sandbox endpoints for backend dependencies
+
+  flutter:
+    name: Flutter
+    overview: A Flutter application using Dart, the Flutter SDK, and a mobile-first app structure.
+    commands: |
+      install:  flutter pub get
+      dev:      flutter run
+      build:    flutter build
+      test:     flutter test
+      lint:     flutter analyze
+      format:   dart format .
+    tech_stack: |
+      | Language    | Dart |
+      | Framework   | Flutter |
+      | State       | Fill in |
+      | Testing     | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | pub |
+    code_style: |
+      - Prefer small widgets with explicit composition
+      - Keep business logic out of widget build methods
+      - Use immutable models when practical
+      - Keep platform-specific code isolated
+      - Record platform and architecture rules in the root `AGENTS.md`
+    skills: |
+      - Use `find-skills` for testing, review, and automation workflows
+      - Add Flutter-specific skills only if the project standardizes on a state or navigation library
+      - Keep build and formatting rules aligned with the repo's actual Flutter tooling
+    test_command: flutter test
+    test_framework: flutter_test
+    testing: |
+      - Unit tests: `test/`
+      - Widget tests: `test/`
+      - Integration tests: `integration_test/` if present
+    never_modify: |
+      - `.dart_tool/`
+      - build outputs
+      - generated code unless the repo explicitly owns it
+    external_services: |
+      **External services:**
+      - Use local emulators and sandbox credentials where possible
+
+  svelte:
+    name: Svelte
+    overview: A Svelte application, typically built with Vite or SvelteKit and TypeScript.
+    commands: |
+      install:  npm install
+      dev:      npm run dev
+      build:    npm run build
+      test:     npm test
+      lint:     npm run lint
+      format:   npx prettier --write .
+    tech_stack: |
+      | Language    | TypeScript / JavaScript |
+      | Framework   | Svelte / SvelteKit |
+      | State       | Fill in |
+      | Testing     | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | npm / pnpm / yarn |
+    code_style: |
+      - Keep components small and easy to read
+      - Prefer stores or local component state over extra abstraction
+      - Use clear file names that match routes or components
+      - Avoid mixing framework styles from React or Vue
+      - Record app-specific rules in the root `AGENTS.md`
+    skills: |
+      - Use `web-design-guidelines` for UI work when available
+      - Use `find-skills` before testing, review, and automation workflows
+      - Add Svelte-specific skills only when the repo standardizes on them
+    test_command: npm test
+    test_framework: Vitest
+    testing: |
+      - Unit tests: project-specific `*.test.ts`
+      - Integration tests: project-specific if present
+      - E2E tests: project-specific if present
+    never_modify: |
+      - build outputs
+      - generated artifacts
+      - `.env` and secret files
+    external_services: |
+      **External services:**
+      - Use sandbox endpoints and mock data for development
+
+  remix:
+    name: Remix
+    overview: A Remix application using React, TypeScript, and the Remix route/data model.
+    commands: |
+      install:  npm install
+      dev:      npm run dev
+      build:    npm run build
+      test:     npm test
+      lint:     npm run lint
+      format:   npx prettier --write .
+    tech_stack: |
+      | Language    | TypeScript / JavaScript |
+      | Framework   | Remix |
+      | Database    | Fill in |
+      | Auth        | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | npm / pnpm / yarn |
+    code_style: |
+      - Keep loaders and actions close to the routes they serve
+      - Prefer server-first data access and minimize client-only state
+      - Use React patterns that fit the Remix route model
+      - Keep shared UI and route logic separated cleanly
+      - Record route, data, and deployment rules in the root `AGENTS.md`
+    skills: |
+      - Use `web-design-guidelines` and React-focused skills for UI work when available
+      - Use `find-skills` for testing, review, and automation workflows
+      - Add Remix-specific skills only if the repo standardizes on them
+    test_command: npm test
+    test_framework: Vitest
+    testing: |
+      - Unit tests: project-specific `*.test.tsx`
+      - Integration tests: project-specific if present
+      - E2E tests: project-specific if present
+    never_modify: |
+      - build outputs
+      - generated artifacts
+      - `.env` and secret files
+    external_services: |
+      **External services:**
+      - Use local emulators and sandbox APIs for development
+
+  astro:
+    name: Astro
+    overview: An Astro application using the Astro framework, TypeScript, and component islands where needed.
+    commands: |
+      install:  npm install
+      dev:      npm run dev
+      build:    npm run build
+      test:     npm test
+      lint:     npm run lint
+      format:   npx prettier --write .
+    tech_stack: |
+      | Language    | TypeScript / JavaScript |
+      | Framework   | Astro |
+      | State       | Fill in |
+      | Testing     | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | npm / pnpm / yarn |
+    code_style: |
+      - Prefer static content first and add islands only where needed
+      - Keep client-side frameworks isolated to the components that need them
+      - Use layout and component boundaries consistently
+      - Avoid turning simple pages into over-engineered React apps
+      - Record site and content rules in the root `AGENTS.md`
+    skills: |
+      - Use `web-design-guidelines` for UI and layout work when available
+      - Use `find-skills` for testing, review, and automation workflows
+      - Add Astro-specific skills only if the repository standardizes on them
+    test_command: npm test
+    test_framework: Vitest
+    testing: |
+      - Unit tests: project-specific `*.test.ts`
+      - Integration tests: project-specific if present
+      - E2E tests: project-specific if present
+    never_modify: |
+      - build outputs such as `dist/`
+      - generated artifacts
+      - `.env` and secret files
+    external_services: |
+      **External services:**
+      - Use local or sandbox endpoints for any networked dependency
+
+  solid:
+    name: Solid
+    overview: A Solid application, typically with TypeScript and a Vite-based toolchain.
+    commands: |
+      install:  npm install
+      dev:      npm run dev
+      build:    npm run build
+      test:     npm test
+      lint:     npm run lint
+      format:   npx prettier --write .
+    tech_stack: |
+      | Language    | TypeScript / JavaScript |
+      | Framework   | Solid / SolidStart |
+      | State       | Fill in |
+      | Testing     | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | npm / pnpm / yarn |
+    code_style: |
+      - Keep components small and reactive
+      - Prefer signals and stores that match the project style
+      - Avoid mixing React-style patterns into Solid components
+      - Use route- and feature-based folders when the project grows
+      - Record app-specific rules in the root `AGENTS.md`
+    skills: |
+      - Use `web-design-guidelines` for UI work when available
+      - Use `find-skills` for testing, review, and automation workflows
+      - Add Solid-specific skills only if the repo standardizes on them
+    test_command: npm test
+    test_framework: Vitest
+    testing: |
+      - Unit tests: project-specific `*.test.ts`
+      - Integration tests: project-specific if present
+      - E2E tests: project-specific if present
+    never_modify: |
+      - build outputs
+      - generated artifacts
+      - `.env` and secret files
+    external_services: |
+      **External services:**
+      - Use sandbox endpoints and local mocks during development
+
+  solidstart:
+    name: SolidStart
+    overview: A SolidStart application using TypeScript, Solid, and the SolidStart routing/data model.
+    commands: |
+      install:  npm install
+      dev:      npm run dev
+      build:    npm run build
+      test:     npm test
+      lint:     npm run lint
+      format:   npx prettier --write .
+    tech_stack: |
+      | Language    | TypeScript / JavaScript |
+      | Framework   | SolidStart |
+      | State       | Fill in |
+      | Testing     | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | npm / pnpm / yarn |
+    code_style: |
+      - Prefer Solid primitives and route-based organization
+      - Keep server and client concerns separated where SolidStart does that naturally
+      - Avoid React-style patterns
+      - Record routing and deployment rules in the root `AGENTS.md`
+    skills: |
+      - Use `web-design-guidelines` for UI work when available
+      - Use `find-skills` for testing, review, and automation workflows
+      - Add Solid-specific skills only if the repository standardizes on them
+    test_command: npm test
+    test_framework: Vitest
+    testing: |
+      - Unit tests: project-specific `*.test.ts`
+      - Integration tests: project-specific if present
+      - E2E tests: project-specific if present
+    never_modify: |
+      - build outputs
+      - generated artifacts
+      - `.env` and secret files
+    external_services: |
+      **External services:**
+      - Use sandbox endpoints and local mocks during development
+
+  nestjs:
+    name: NestJS
+    overview: A NestJS backend built with TypeScript, Node.js, and the Nest application structure.
+    commands: |
+      install:  npm install
+      dev:      npm run start:dev
+      build:    npm run build
+      test:     npm test
+      lint:     npm run lint
+      format:   npx prettier --write .
+    tech_stack: |
+      | Language    | TypeScript |
+      | Framework   | NestJS |
+      | Database    | Fill in |
+      | Auth        | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | npm / pnpm / yarn |
+    code_style: |
+      - Use modules, controllers, providers, and services the Nest way
+      - Keep dependency injection explicit
+      - Move validation and transformation into DTOs and pipes
+      - Keep adapters and integrations isolated from business logic
+      - Record architecture and layering rules in the root `AGENTS.md`
+    skills: |
+      - Use `find-skills` for testing, review, and automation workflows
+      - Install API-focused skills when the repo needs generated docs or integration helpers
+      - Use `nodejs-best-practices`, `typescript-best-practices`, or NestJS-specific skills if available
+      - Keep Nest-specific conventions in this preset
+    test_command: npm test
+    test_framework: Jest
+    testing: |
+      - Unit tests: `*.spec.ts`
+      - Integration tests: `test/` or project-specific folders
+      - E2E tests: `test/e2e/` if present
+    never_modify: |
+      - `dist/`
+      - generated clients or artifacts
+      - `.env` and secret files
+    external_services: |
+      **External services:**
+      - Use sandbox services or local emulators during development
+
+  express:
+    name: Express
+    overview: A Node.js API or web service built with Express and conventional JavaScript or TypeScript.
+    commands: |
+      install:  npm install
+      dev:      npm run dev
+      build:    npm run build
+      test:     npm test
+      lint:     npm run lint
+      format:   npx prettier --write .
+    tech_stack: |
+      | Language    | TypeScript / JavaScript |
+      | Framework   | Express |
+      | Database    | Fill in |
+      | Auth        | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | npm / pnpm / yarn |
+    code_style: |
+      - Keep route handlers thin and delegate logic to services
+      - Prefer middleware for cross-cutting concerns
+      - Keep request validation explicit and centralized
+      - Avoid framework-specific abstractions that hide the HTTP layer
+      - Record project-specific routing rules in the root `AGENTS.md`
+    skills: |
+      - Use `find-skills` for testing, review, and automation workflows
+      - Add API documentation or security skills when the repo needs them
+      - Use `nodejs-best-practices` and `typescript-best-practices` if the repo is TypeScript-first
+      - Keep Express conventions and folder structure in this preset
+    test_command: npm test
+    test_framework: Jest / Mocha
+    testing: |
+      - Unit tests: `*.test.ts` or `*.spec.ts`
+      - Integration tests: `tests/integration/` if present
+      - E2E tests: project-specific if present
+    never_modify: |
+      - `node_modules/`
+      - build outputs
+      - `.env` and secret files
+    external_services: |
+      **External services:**
+      - Use local or sandbox endpoints during development
+
+  laravel:
+    name: Laravel
+    overview: A Laravel application or service using PHP, Composer, and the standard Laravel application structure.
+    commands: |
+      install:  composer install
+      dev:      php artisan serve
+      build:    composer dump-autoload -o
+      test:     vendor/bin/pest
+      lint:     vendor/bin/pint
+      format:   vendor/bin/pint
+    tech_stack: |
+      | Language    | PHP |
+      | Framework   | Laravel |
+      | Database    | Fill in |
+      | Auth        | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | Composer |
+    code_style: |
+      - Keep controllers thin and move business logic into actions, jobs, or services
+      - Use Laravel conventions before inventing custom abstractions
+      - Keep Eloquent usage consistent with the repo's conventions
+      - Record queue, event, and policy rules in the root `AGENTS.md`
+    skills: |
+      - Use `find-skills` for testing, review, and automation workflows
+      - Prefer Laravel-specific installable skills when the repo depends on common packages
+      - Use `php-code-review`, `php-testing`, or `laravel-best-practices` if those skills are available
+      - Keep framework conventions centralized in this preset rather than scattered
+    test_command: vendor/bin/pest
+    test_framework: Pest
+    testing: |
+      - Unit tests: `tests/Unit/`
+      - Feature tests: `tests/Feature/`
+      - E2E tests: only if the repository defines them
+    never_modify: |
+      - `vendor/`
+      - `storage/` runtime artifacts
+      - secret environment files
+    external_services: |
+      **External services:**
+      - Use sandbox credentials for third-party APIs
+
+  fastapi:
+    name: FastAPI
+    overview: A FastAPI application using Python, Pydantic, and an ASGI-based service layout.
+    commands: |
+      install:  uv sync
+      dev:      uv run fastapi dev src/main.py
+      build:    uv build
+      test:     uv run pytest
+      lint:     uv run ruff check .
+      format:   uv run ruff format .
+      typecheck: uv run mypy src/
+    tech_stack: |
+      | Language    | Python |
+      | Framework   | FastAPI |
+      | Database    | Fill in |
+      | Auth        | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | uv |
+    code_style: |
+      - Keep request and response models explicit
+      - Prefer dependency injection through FastAPI dependencies
+      - Use async endpoints consistently when the repo is async-first
+      - Keep routers, services, and repositories separated when the app grows
+      - Record API and environment rules in the root `AGENTS.md`
+    skills: |
+      - Use `find-skills` for testing, review, and automation workflows
+      - Add FastAPI-specific skills if the repository depends on API docs or async helpers
+      - Use `python-best-practices`, `python-testing`, or `fastapi-best-practices` if available
+      - Keep this preset aligned with the repo's testing and type-checking tools
+    test_command: uv run pytest
+    test_framework: pytest
+    testing: |
+      - Unit tests: `tests/unit/`
+      - Integration tests: `tests/integration/`
+      - E2E tests: only if the repository defines them
+    never_modify: |
+      - `alembic/versions/` unless the change explicitly requires a new migration
+      - generated clients or artifacts
+      - `.env` and secret files
+    external_services: |
+      **External services:**
+      - Use local or sandbox databases and APIs for development
+
+  django:
+    name: Django
+    overview: A Django application using Python, Django, and the standard Django project layout.
+    commands: |
+      install:  uv sync
+      dev:      uv run python manage.py runserver
+      build:    uv build
+      test:     uv run python manage.py test
+      lint:     uv run ruff check .
+      format:   uv run ruff format .
+    tech_stack: |
+      | Language    | Python |
+      | Framework   | Django |
+      | Database    | Fill in |
+      | Auth        | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | uv / pip |
+    code_style: |
+      - Keep apps modular and domain-focused
+      - Prefer Django conventions over custom plumbing
+      - Use forms, serializers, or services consistently with the repo
+      - Record admin, migration, and settings rules in the root `AGENTS.md`
+    skills: |
+      - Use `find-skills` for testing, review, and automation workflows
+      - Add Django-specific skills if the repository adopts any framework plugins or helpers
+      - Use `python-best-practices`, `python-testing`, or `django-best-practices` if available
+      - Keep conventions centralized in this preset
+    test_command: uv run python manage.py test
+    test_framework: Django test / pytest
+    testing: |
+      - Unit tests: app-local `tests.py` or `tests/` packages
+      - Integration tests: project-specific if present
+      - E2E tests: only if the repository defines them
+    never_modify: |
+      - `staticfiles/` build outputs
+      - migrations unless the change explicitly requires one
+      - `.env` and secret files
+    external_services: |
+      **External services:**
+      - Use local services or test credentials for development
+
+  bun:
+    name: Bun
+    overview: A Bun-based JavaScript or TypeScript project using the Bun runtime, package manager, and test runner.
+    commands: |
+      install:  bun install
+      dev:      bun run dev
+      build:    bun run build
+      test:     bun test
+      lint:     bunx eslint .
+      format:   bunx prettier --write .
+    tech_stack: |
+      | Language    | TypeScript / JavaScript |
+      | Runtime     | Bun |
+      | Framework   | Fill in |
+      | Testing     | Bun test or project runner |
+      | Hosting     | Fill in |
+      | Package Mgr | Bun |
+    code_style: |
+      - Prefer Bun-native tooling when the repo has standardized on it
+      - Keep runtime-specific scripts in `package.json`
+      - Avoid mixing Bun and Node package-manager conventions unless the repo already does
+      - Record deployment and runtime rules in the root `AGENTS.md`
+    skills: |
+      - Use `find-skills` for testing, review, and automation workflows
+      - Use `nodejs-best-practices`, `typescript-best-practices`, or Bun-specific skills if available
+      - Keep the preset aligned with the repo's actual linter and formatter
+    test_command: bun test
+    test_framework: Bun test
+    testing: |
+      - Unit tests: project-specific `*.test.ts` or `*.test.tsx`
+      - Integration tests: project-specific if present
+      - E2E tests: project-specific if present
+    never_modify: |
+      - `node_modules/`
+      - build outputs
+      - `.env` and secret files
+    external_services: |
+      **External services:**
+      - Use sandbox endpoints and test credentials only
+
+  deno:
+    name: Deno
+    overview: A Deno application, script, or service using `deno.json` or `deno.jsonc`.
+    commands: |
+      install:  deno cache
+      dev:      deno task dev
+      build:    deno task build
+      test:     deno test
+      lint:     deno lint
+      format:   deno fmt
+    tech_stack: |
+      | Language    | TypeScript / JavaScript |
+      | Runtime     | Deno |
+      | Framework   | Fill in |
+      | Testing     | Deno test |
+      | Hosting     | Fill in |
+      | Package Mgr | Deno |
+    code_style: |
+      - Prefer standard library and Deno-first APIs
+      - Keep permissions explicit and minimal
+      - Use `deno task` for repo-defined workflows
+      - Avoid Node-specific patterns unless the repo intentionally uses them
+      - Record runtime and permission rules in the root `AGENTS.md`
+    skills: |
+      - Use `find-skills` for testing, review, and automation workflows
+      - Use `typescript-best-practices` or Deno-specific skills if available
+      - Keep the preset aligned with the repo's task definitions
+    test_command: deno test
+    test_framework: Deno test
+    testing: |
+      - Unit tests: `*_test.ts` or `*.test.ts`
+      - Integration tests: project-specific if present
+      - E2E tests: project-specific if present
+    never_modify: |
+      - generated output
+      - `.env` and secret files
+      - lockfiles unless dependency changes are requested
+    external_services: |
+      **External services:**
+      - Use sandbox endpoints and explicit permission flags
+
+  vite:
+    name: Vite
+    overview: A Vite-based frontend application or app shell using TypeScript or JavaScript.
+    commands: |
+      install:  npm install
+      dev:      npm run dev
+      build:    npm run build
+      test:     npm test
+      lint:     npm run lint
+      format:   npx prettier --write .
+    tech_stack: |
+      | Language    | TypeScript / JavaScript |
+      | Framework   | Vite |
+      | State       | Fill in |
+      | Testing     | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | npm / pnpm / yarn |
+    code_style: |
+      - Keep framework-specific logic close to the UI layer it belongs to
+      - Prefer simple Vite conventions over custom build wrappers
+      - Use the package manager already encoded in the repo
+      - Record app-specific rules in the root `AGENTS.md`
+    skills: |
+      - Use `web-design-guidelines` for UI work when available
+      - Use `vercel-react-best-practices`, `vercel-composition-patterns`, or framework-specific skills when relevant
+      - Use `find-skills` for testing, review, and automation workflows
+    test_command: npm test
+    test_framework: Vitest
+    testing: |
+      - Unit tests: project-specific `*.test.ts`
+      - Integration tests: project-specific if present
+      - E2E tests: project-specific if present
+    never_modify: |
+      - build outputs
+      - generated artifacts
+      - `.env` and secret files
+    external_services: |
+      **External services:**
+      - Use sandbox endpoints and local mocks during development
+
+  tanstack:
+    name: TanStack
+    overview: A TanStack-based application using TanStack Start, TanStack Router, or related TanStack packages.
+    commands: |
+      install:  npm install
+      dev:      npm run dev
+      build:    npm run build
+      test:     npm test
+      lint:     npm run lint
+      format:   npx prettier --write .
+    tech_stack: |
+      | Language    | TypeScript |
+      | Framework   | TanStack Start / Router |
+      | State       | Fill in |
+      | Testing     | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | npm / pnpm / yarn |
+    code_style: |
+      - Keep routing, data loading, and server boundaries explicit
+      - Prefer TanStack conventions over custom wrappers
+      - Keep query and route configuration close to the feature that uses it
+      - Record app and deployment rules in the root `AGENTS.md`
+    skills: |
+      - Use `web-design-guidelines` for UI work when available
+      - Use `find-skills` for testing, review, and automation workflows
+      - Add TanStack-specific skills only if the repository standardizes on them
+    test_command: npm test
+    test_framework: Vitest
+    testing: |
+      - Unit tests: project-specific `*.test.ts`
+      - Integration tests: project-specific if present
+      - E2E tests: project-specific if present
+    never_modify: |
+      - build outputs
+      - generated artifacts
+      - `.env` and secret files
+    external_services: |
+      **External services:**
+      - Use sandbox endpoints and local mocks during development
+
+  tauri:
+    name: Tauri
+    overview: A Tauri desktop application with a Rust backend and a web frontend.
+    commands: |
+      install:  npm install && cargo fetch
+      dev:      npm run tauri dev
+      build:    npm run tauri build
+      test:     cargo test
+      lint:     cargo clippy --all-targets --all-features
+      format:   cargo fmt
+    tech_stack: |
+      | Language    | Rust + TypeScript / JavaScript |
+      | Framework   | Tauri |
+      | Frontend    | Fill in |
+      | Testing     | cargo test + frontend tests |
+      | Hosting     | Desktop app |
+      | Package Mgr | Cargo + npm / pnpm / yarn |
+    code_style: |
+      - Keep Rust and frontend boundaries explicit
+      - Use Tauri commands only where a desktop bridge is needed
+      - Avoid leaking platform-specific logic into shared UI code
+      - Record permission and window rules in the root `AGENTS.md`
+    skills: |
+      - Use `find-skills` for testing, review, and automation workflows
+      - Add Rust skills plus `web-design-guidelines` or React/TypeScript skills if available
+      - Keep security-sensitive desktop permissions documented
+    test_command: cargo test
+    test_framework: cargo test
+    testing: |
+      - Rust unit tests: `src/` and `tests/`
+      - Frontend tests: project-specific if present
+      - Integration tests: project-specific if present
+    never_modify: |
+      - `src-tauri/target/`
+      - generated assets
+      - `.env` and secret files
+    external_services: |
+      **External services:**
+      - Use sandbox APIs and local mock services during development
+
+  elixir:
+    name: Elixir
+    overview: An Elixir application or service built with Mix and the standard BEAM ecosystem.
+    commands: |
+      install:  mix deps.get
+      dev:      mix phx.server
+      build:    mix compile
+      test:     mix test
+      lint:     mix format --check-formatted
+      format:   mix format
+    tech_stack: |
+      | Language    | Elixir |
+      | Framework   | Phoenix / project framework |
+      | Database    | Fill in |
+      | Auth        | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | Mix |
+    code_style: |
+      - Prefer small modules and explicit function pipelines
+      - Keep side effects at the edges
+      - Use pattern matching for clear control flow
+      - Keep Phoenix contexts and boundaries explicit
+      - Record project conventions in the root `AGENTS.md`
+    skills: |
+      - Use `find-skills` for testing, review, and automation workflows
+      - Add Elixir-specific skills when the repository standardizes on a framework
+      - Keep formatter and test commands aligned with the mix configuration
+    test_command: mix test
+    test_framework: ExUnit
+    testing: |
+      - Unit tests: `test/`
+      - Integration tests: `test/` or project-specific folders
+      - E2E tests: only if the repo defines them
+    never_modify: |
+      - `_build/`
+      - `deps/`
+      - generated artifacts or secrets
+    external_services: |
+      **External services:**
+      - Use sandbox credentials and local services for development
+
+  perl:
+    name: Perl
+    overview: A Perl application, library, or script-based project using the standard Perl toolchain.
+    commands: |
+      install:  cpanm --installdeps .
+      dev:      perl script/dev.pl
+      build:    prove -l
+      test:     prove -l
+      lint:     perl -c
+      format:   perltidy -b
+    tech_stack: |
+      | Language    | Perl |
+      | Framework   | Fill in |
+      | Database    | Fill in |
+      | Auth        | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | cpanm / cpan |
+    code_style: |
+      - Prefer strict and warnings in every script and module
+      - Keep modules small and explicit
+      - Use clear package boundaries and naming
+      - Avoid excessive global state
+      - Record repo-specific conventions in the root `AGENTS.md`
+    skills: |
+      - Use `find-skills` for testing, review, and automation workflows
+      - Add Perl-specific skills only when the repository standardizes on them
+      - Keep the linter and formatter choice aligned with the project
+    test_command: prove -l
+    test_framework: Test::More
+    testing: |
+      - Unit tests: `t/`
+      - Integration tests: project-specific if present
+      - E2E tests: only if the repo defines them
+    never_modify: |
+      - `blib/`
+      - build outputs
+      - generated artifacts or secrets
+    external_services: |
+      **External services:**
+      - Use test credentials and local mocks for development
+
+  scala:
+    name: Scala
+    overview: A Scala application, library, or service built with the standard JVM toolchain and a Scala build system.
+    commands: |
+      install:  sbt update
+      dev:      sbt run
+      build:    sbt compile
+      test:     sbt test
+      lint:     sbt scalafmtCheck
+      format:   sbt scalafmtAll
+    tech_stack: |
+      | Language    | Scala |
+      | Framework   | Play / Akka / project framework |
+      | Database    | Fill in |
+      | Auth        | Fill in |
+      | Hosting     | Fill in |
+      | Package Mgr | sbt |
+    code_style: |
+      - Prefer case classes and immutable values
+      - Keep effects at the edges and core logic pure when practical
+      - Use clear package and module boundaries
+      - Avoid implicit-heavy designs unless the repo already relies on them
+      - Record repo-specific conventions in the root `AGENTS.md`
+    skills: |
+      - Use `find-skills` for testing, review, and automation workflows
+      - Add Scala-specific skills only when the repository standardizes on them
+      - Keep formatter and build rules aligned with the actual sbt setup
+    test_command: sbt test
+    test_framework: ScalaTest / MUnit
+    testing: |
+      - Unit tests: `src/test/scala/`
+      - Integration tests: `src/it/scala/` if present
+      - E2E tests: only if the repo defines them
+    never_modify: |
+      - `target/`
+      - generated artifacts
+      - secrets or environment files
+    external_services: |
+      **External services:**
+      - Use sandbox credentials or local containers for development

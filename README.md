@@ -9,7 +9,8 @@ Universal setup for AI coding agents that learn, plan, and ship code autonomousl
 A modular configuration system for AI CLI coding agents. Instead of hand-holding your agent through every task, this repo teaches it to:
 
 - **Self-discover** project context (stack, conventions, dependencies) before writing code
-- **Plan before coding** — always — with formal plans for non-trivial work
+- **Discover skills first** instead of re-inventing known workflows
+- **Plan before coding** for non-trivial work
 - **Coordinate multi-agent teams** for parallel execution across large tasks
 - **Verify its own work** through quality gates, tests, and automated review
 
@@ -32,7 +33,45 @@ autonomous-agents/
 │   ├── GEMINI.md                  # Gemini CLI specific config
 │   └── claude-settings.json       # Claude Code settings template
 ├── project/
-│   └── AGENTS.md                  # Project-level template
+│   ├── AGENTS.md                  # Generic project template
+│   └── presets/
+│       ├── generic/AGENTS.md      # Fallback template
+│       ├── nextjs/AGENTS.md       # Next.js preset
+│       ├── dotnet/AGENTS.md       # .NET preset
+│       ├── python/AGENTS.md       # Python preset
+│       ├── nodejs/AGENTS.md       # Node.js preset
+│       ├── go/AGENTS.md           # Go preset
+│       ├── rust/AGENTS.md         # Rust preset
+│       ├── java/AGENTS.md         # Java preset
+│       ├── ruby/AGENTS.md         # Ruby preset
+│       ├── php/AGENTS.md          # PHP preset
+│       ├── c/AGENTS.md            # C preset
+│       ├── cpp/AGENTS.md          # C++ preset
+│       ├── csharp/AGENTS.md       # C# preset
+│       ├── kotlin/AGENTS.md       # Kotlin preset
+│       ├── swift/AGENTS.md        # Swift preset
+│       ├── react/AGENTS.md        # React preset
+│       ├── vue/AGENTS.md          # Vue preset
+│       ├── angular/AGENTS.md      # Angular preset
+│       ├── flutter/AGENTS.md      # Flutter preset
+│       ├── svelte/AGENTS.md       # Svelte preset
+│       ├── remix/AGENTS.md        # Remix preset
+│       ├── astro/AGENTS.md        # Astro preset
+│       ├── solid/AGENTS.md        # Solid preset
+│       ├── solidstart/AGENTS.md   # SolidStart preset
+│       ├── nestjs/AGENTS.md       # NestJS preset
+│       ├── express/AGENTS.md      # Express preset
+│       ├── laravel/AGENTS.md      # Laravel preset
+│       ├── fastapi/AGENTS.md      # FastAPI preset
+│       ├── django/AGENTS.md       # Django preset
+│       ├── bun/AGENTS.md          # Bun preset
+│       ├── deno/AGENTS.md         # Deno preset
+│       ├── vite/AGENTS.md         # Vite preset
+│       ├── tanstack/AGENTS.md     # TanStack preset
+│       ├── tauri/AGENTS.md        # Tauri preset
+│       ├── elixir/AGENTS.md       # Elixir preset
+│       ├── perl/AGENTS.md         # Perl preset
+│       └── scala/AGENTS.md        # Scala preset
 ├── modules/
 │   ├── agent-teams.md             # Multi-agent coordination
 │   ├── tdd.md                     # Test-driven development
@@ -62,9 +101,9 @@ autonomous-agents/
 
 You need at least one AI CLI tool installed. The config files are inert without one.
 
-### Recommended Claude Code Plugins
+### Recommended Claude Code Plugins / Skills
 
-If using Claude Code, these plugins extend the autonomous workflow:
+If using Claude Code, these plugins and skills extend the autonomous workflow:
 
 | Plugin | Purpose |
 |--------|---------|
@@ -75,6 +114,13 @@ If using Claude Code, these plugins extend the autonomous workflow:
 | `supabase` | Supabase integration (if applicable) |
 
 Install plugins via `/install-skill <name>` inside Claude Code.
+
+Useful globally installed skills:
+
+- `find-skills` for skill discovery and installation
+- planning and implementation skills for non-trivial work
+- debugging, testing, review, and quality-gate skills
+- git workflow skills for commit and PR hygiene
 
 ---
 
@@ -95,33 +141,47 @@ bash install.sh       # macOS / Linux / WSL
 The installer will:
 1. Detect which AI CLI tools you have installed
 2. Copy the appropriate global config files to each tool's config directory
-3. Optionally install recommended plugins
-4. Print a summary of what was placed where
+3. Detect the project stack and package manager, including Vite-only repos
+4. Render the copied project preset so command examples match the detected package manager
+5. Install the matching project preset when requested
+6. Optionally install recommended plugins or skills
+7. Print a summary of what was placed where
+
+Non-interactive examples:
+
+```bash
+./install.sh --preset nextjs
+./install.sh --all --preset laravel --dry-run
+./install.sh --preset bun
+./install.sh --list-presets
+./install.ps1 -Preset react
+./install.ps1 -All -Preset fastapi -DryRun
+./install.ps1 -Preset tauri
+./install.ps1 -ListPresets
+```
 
 ### Manual Install
 
 Copy only what you need:
 
 ```bash
-# Claude Code
-cp global/AGENTS.md ~/.claude/AGENTS.md
-cp global/CLAUDE.md ~/.claude/CLAUDE.md
-cp global/claude-settings.json ~/.claude/settings.json
-
-# Gemini CLI
-cp global/AGENTS.md ~/.gemini/AGENTS.md
-cp global/GEMINI.md ~/.gemini/GEMINI.md
-
-# Codex CLI
-cp global/AGENTS.md ~/.codex/AGENTS.md
+# Global config (pick your tools)
+cp global/AGENTS.md   ~/.claude/AGENTS.md   # Claude Code
+cp global/CLAUDE.md   ~/.claude/CLAUDE.md   # Claude Code specific
+cp global/AGENTS.md   ~/.codex/AGENTS.md    # Codex CLI
+cp global/CODEX.md    ~/.codex/CODEX.md     # Codex CLI specific
+cp global/AGENTS.md   ~/.gemini/AGENTS.md   # Gemini CLI
+cp global/GEMINI.md   ~/.gemini/GEMINI.md   # Gemini CLI specific
+cp global/claude-settings.json ~/.claude/settings.json  # Claude Code settings
 ```
 
-For any project, drop the project template into the repo root:
+For any project, copy the matching preset into the repo root:
 
 ```bash
-cp project/AGENTS.md /path/to/your/project/AGENTS.md
-# Edit it to describe your stack, conventions, and structure
+cp project/presets/<your-stack>/AGENTS.md /path/to/your/project/AGENTS.md
 ```
+
+Available stacks: angular, astro, bun, c, cpp, csharp, deno, django, dotnet, elixir, express, fastapi, flutter, generic, go, java, kotlin, laravel, nestjs, nextjs, nodejs, perl, php, python, react, remix, ruby, rust, scala, solid, solidstart, svelte, swift, tanstack, tauri, vite, vue.
 
 ---
 
@@ -138,9 +198,10 @@ Global AGENTS.md          Base rules for all projects and all tools
             └── Modules         Composable behaviors (add/remove as needed)
 ```
 
-- **Global AGENTS.md** -- applies to every project you open. Defines planning discipline, review habits, git conventions, and quality gates.
-- **CLAUDE.md / GEMINI.md** -- tool-specific extensions that use features unique to that CLI (skills, MCP servers, model routing).
-- **Project AGENTS.md** -- lives in each repo root. Describes the stack, folder structure, test commands, and project-specific rules.
+- **Global AGENTS.md** -- applies to every project you open. Defines planning discipline, skill discovery, review habits, git conventions, and quality gates.
+- **CLAUDE.md / GEMINI.md** -- tool-specific extensions that use features unique to that CLI (skills, MCP servers, model routing, presets).
+- **Project AGENTS.md** -- lives in each repo root. Describes the stack, folder structure, test commands, project-specific rules, and useful skills.
+- **Project presets** -- stack-specific templates you can copy into a new repo before customizing. The current catalog includes generic, Next.js, .NET, Python, Node.js, Go, Rust, Java, Ruby, PHP, C, C++, C#, Kotlin, Swift, React, Vue, Angular, Flutter, Svelte, Remix, Astro, Solid, SolidStart, NestJS, Express, Laravel, FastAPI, Django, Bun, Deno, Vite, TanStack, Tauri, Elixir, Perl, and Scala.
 - **Modules** -- composable blocks already embedded in the global config. Enable or disable them by editing the global file.
 
 ### The Self-Learning Flow
@@ -149,9 +210,10 @@ When an agent starts work on a task, the config instructs it to:
 
 1. **Read manifests** -- `package.json`, `pyproject.toml`, `*.csproj`, `go.mod`, etc.
 2. **Detect the stack** -- framework, language version, key dependencies
-3. **Read existing docs** -- `README.md`, `CONTRIBUTING.md`, `docs/` directory
-4. **Check git conventions** -- recent commit messages, branch naming, PR templates
-5. **Start work** -- with full context, no questions needed
+3. **Pick the matching preset** -- `generic`, `nextjs`, `dotnet`, `python`, or a repo-specific variant
+4. **Read existing docs** -- `README.md`, `CONTRIBUTING.md`, `docs/` directory
+5. **Check git conventions** -- recent commit messages, branch naming, PR templates
+6. **Start work** -- with full context, no questions needed
 
 This eliminates the "what framework are you using?" back-and-forth that wastes tokens and time.
 
@@ -226,7 +288,12 @@ Large context windows are powerful but expensive. The `token-efficiency` module 
 
 ### Claude Code Settings
 
-Edit `global/claude-settings.json` to control permissions:
+Two settings files are provided:
+
+- `claude-settings.json` — conservative defaults (safe shell command patterns)
+- `claude-settings-power.json` — unrestricted shell access for power users
+
+Edit the appropriate file to control permissions:
 
 - Which tools the agent can use without asking
 - Which directories it can read/write

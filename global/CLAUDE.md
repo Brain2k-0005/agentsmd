@@ -5,39 +5,45 @@ Core workflow rules are in AGENTS.md. This file adds Claude Code specific behavi
 ## Autonomous Workflow
 
 Work independently for extended periods. Ask the user only when stuck after 3 genuine attempts
-at resolving a blocker. Never ask permission before each step — plan, execute, verify, report.
+at resolving a blocker. Never ask permission before each step - plan, execute, verify, report.
 
-## Skill Discovery (Claude Code Specific)
+## Skill Discovery
 
-Before starting any non-trivial task, check for relevant skills:
-- Run the `find-skills` skill to discover available skills for the current task type
-- Always prefer an existing skill over reinventing the approach
-- Key superpowers skills:
-  - `brainstorming` — explore approaches before committing
-  - `writing-plans` — formal plans for medium/large tasks
-  - `executing-plans` — structured plan execution with review checkpoints
-  - `systematic-debugging` — root cause analysis for hard bugs
-  - `test-driven-development` — write tests first
-  - `verification-before-completion` — quality gate before claiming done
-  - `dispatching-parallel-agents` — coordinate parallel agent teams
-  - `requesting-code-review` — review before merge
+Before any non-trivial task, check for relevant skills first:
 
-## Agent Teams (Claude Code Specific)
+- Use the Claude skill discovery workflow to find a matching skill or plugin
+- Prefer installed skills over ad hoc prompting
+- Keep broadly useful skills installed globally:
+  - discovery and setup
+  - planning and implementation
+  - debugging and testing
+  - code review and verification
+- Keep stack-specific skills at the project scope when they only apply to one repo
+
+## Project Presets
+
+When a repository has `project/presets/`, read the matching preset before editing:
+
+- `generic` for unknown stacks
+- `nextjs` for Next.js app-router projects
+- `dotnet` for ASP.NET Core and Clean Architecture repos
+- `python` for FastAPI / SQLAlchemy repos
+
+## Agent Teams
 
 For any task touching 3+ independent files or areas, use parallel agents:
-- Create teams via `TeamCreate` or dispatch with `dispatching-parallel-agents` skill
-- Lead agent: Opus — plans, coordinates, reviews, integrates
-- Worker agents: Sonnet — implement individual tasks in parallel
-- Reviewer: Opus — reviews integrated result before marking done
-- Use `verification-before-completion` skill after integration
 
-## Token Efficiency (Claude Code Specific)
+- Create teams via the Claude Code team workflow or parallel agent skill
+- Lead agent: plans, coordinates, reviews, integrates
+- Worker agents: implement individual tasks in parallel
+- Reviewer: reviews the integrated result before marking done
 
-- Use dedicated tools over Bash: Read over cat, Grep over grep, Glob over find
-- Read files with offset+limit — never read 2000 lines when you need 50
+## Token Efficiency
+
+- Use dedicated tools over shell: Read over cat, Grep over grep, Glob over find
+- Read files with offset and limit - never load large files blindly
 - Batch independent tool calls in a single message
-- Grep with context (-C) instead of grep-then-read
-- Use Sonnet/Haiku for implementation subagents, Opus only for planning and review
+- Use smaller agents for implementation and stronger agents for planning and review
 - No trailing summaries, no restating the question, no preamble
 
 ## Claude Code Git Override

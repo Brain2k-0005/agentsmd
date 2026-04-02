@@ -6,9 +6,12 @@
 
 <!-- Describe what this project does in 1-2 sentences -->
 
+**Preset**
+<!-- Use the matching preset from `project/presets/` when possible: generic, nextjs, dotnet, python, nodejs, go, rust, java, ruby, php, c, cpp, csharp, kotlin, swift, react, vue, angular, flutter, svelte, remix, astro, solid, solidstart, nestjs, express, laravel, fastapi, django, bun, deno, vite, tanstack, tauri, elixir, perl, scala, or a project-specific variant. -->
+
 **Key architectural decisions:**
 <!-- List any non-obvious decisions agents must respect, e.g.:
-- We use optimistic UI updates everywhere — do not add loading spinners to mutations
+- We use optimistic UI updates everywhere - do not add loading spinners to mutations
 - All database access goes through the repository layer, never direct ORM calls in routes
 -->
 
@@ -31,13 +34,14 @@ format:   # e.g. npm run format
 
 <!-- List your primary technologies. Agents should verify exact versions by reading package.json, pyproject.toml, go.mod, etc. -->
 
-| Layer      | Technology |
-|------------|------------|
-| Language   |            |
-| Framework  |            |
-| Database   |            |
-| Auth       |            |
-| Hosting    |            |
+| Layer       | Technology |
+|-------------|------------|
+| Language    |            |
+| Framework   |            |
+| Database    |            |
+| Auth        |            |
+| Hosting     |            |
+| Package Mgr |            |
 
 ---
 
@@ -45,9 +49,25 @@ format:   # e.g. npm run format
 
 <!-- List conventions not captured by linter configs. Check .editorconfig and linter configs for formatting rules. -->
 
-- <!-- e.g. Use named exports only — no default exports -->
-- <!-- e.g. Prefer async/await over .then() chains -->
-- <!-- e.g. All new components go in src/components/<ComponentName>/index.tsx -->
+- Read the matching preset before editing stack-specific code
+- Use the repo's existing folder boundaries and naming conventions
+- Prefer changes that keep the current architecture intact unless a redesign is requested
+- Record any project-specific skill requirements here if the project depends on them
+
+---
+
+## Skills And Workflow
+
+**Skills to consider before non-trivial work:**
+- discovery and setup: `find-skills`
+- planning and execution: implementation-plan / planning skills
+- debugging and verification: debugging, testing, review, and quality-gate skills
+- stack-specific: install only the skills that match this project type
+
+**Autonomy rules:**
+- Inspect manifests, docs, and recent commits before asking questions
+- Prefer the smallest preset that matches the project
+- If the stack is unclear, fall back to `project/presets/generic/AGENTS.md`
 
 ---
 
@@ -67,13 +87,13 @@ format:   # e.g. npm run format
 ## Boundaries
 
 **Never modify:**
-- <!-- e.g. db/migrations/ — migrations are append-only -->
-- <!-- e.g. .github/workflows/ — CI is managed separately -->
-- <!-- e.g. src/generated/ — auto-generated, do not edit by hand -->
+- <!-- e.g. db/migrations/ - migrations are append-only -->
+- <!-- e.g. .github/workflows/ - CI is managed separately -->
+- <!-- e.g. src/generated/ - auto-generated, do not edit by hand -->
 
 **External services requiring caution:**
-- <!-- e.g. Stripe — use test keys only; never call live endpoints in dev -->
-- <!-- e.g. SendGrid — all email in dev must route to the sandbox account -->
+- <!-- e.g. Stripe - use test keys only; never call live endpoints in dev -->
+- <!-- e.g. SendGrid - all email in dev must route to the sandbox account -->
 
 ---
 
@@ -83,4 +103,4 @@ format:   # e.g. npm run format
 
 - <!-- e.g. Do not install new dependencies without confirming with the user first -->
 - <!-- e.g. All SQL queries must be reviewed for injection risk before committing -->
-- <!-- e.g. Feature flags live in src/flags.ts — wrap any experimental code in one -->
+- <!-- e.g. Feature flags live in src/flags.ts - wrap any experimental code in one -->
