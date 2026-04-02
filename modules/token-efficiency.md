@@ -12,15 +12,69 @@ Long autonomous runs burn tokens fast. Every unnecessary tool call, verbose outp
 
 ## CLI Tools vs MCP Tools — When to Use Which
 
-| Use CLI tools (Bash) when... | Use MCP tools when... |
-|---|---|
-| Simple file ops: ls, mkdir, cp, mv | Structured queries: databases, APIs, search |
-| Running build/test/lint commands | External services: GitHub, Jira, Slack |
-| Git operations | Complex browser automation |
-| One-shot system commands | Stateful multi-step workflows |
-| Output is small and predictable | Output needs parsing or filtering |
+### The Rule
 
-**Rule of thumb**: CLI tools are token-cheap (short input, short output). MCP tools carry overhead per call (schema, serialization) but provide structured data. If `grep` or `git log` answers the question, don't call an MCP tool.
+**CLI tools** = cheap, fast, one-shot operations you control locally.
+**MCP tools** = structured access to external services, APIs, and stateful workflows.
+
+### Real-World Examples
+
+**Stripe — MCP vs CLI:**
+
+| Task | Use | Why |
+|------|-----|-----|
+| Check a customer's subscription status | Stripe MCP | Structured API call, handles auth, returns typed data |
+| List recent charges for debugging | Stripe MCP | Paginated API with filters — MCP handles pagination |
+| Run `stripe listen` for webhook testing | CLI (Bash) | Long-running process, local-only |
+| Install the Stripe SDK | CLI (Bash) | `npm install stripe` — one-shot package install |
+
+**Database — MCP vs CLI:**
+
+| Task | Use | Why |
+|------|-----|-----|
+| Query user records for debugging | Database MCP (Supabase, PostgreSQL) | Connection pooling, parameterized queries, structured results |
+| Run a migration | CLI (Bash) | `dotnet ef database update` or `alembic upgrade head` — one-shot |
+| Seed test data | CLI (Bash) | `npm run seed` — scripted, local |
+| Explore table schemas | Database MCP | Returns structured metadata, avoids SQL string parsing |
+
+**GitHub — MCP vs CLI:**
+
+| Task | Use | Why |
+|------|-----|-----|
+| Create a pull request | CLI (`gh pr create`) | Simple, one-shot, well-supported CLI |
+| Read PR review comments | GitHub MCP | Structured threads, nested replies, pagination |
+| Check CI status | CLI (`gh run view`) | Quick status check |
+| Search issues across repos | GitHub MCP | Complex queries with filters and labels |
+
+**Browser — MCP vs CLI:**
+
+| Task | Use | Why |
+|------|-----|-----|
+| Download a file | CLI (`curl`) | One-shot, no state needed |
+| Fill out a multi-step form | Browser MCP | Stateful page interaction, DOM manipulation |
+| Take a screenshot for review | Browser MCP | Requires browser context |
+| Check if a URL responds | CLI (`curl -I`) | Simple health check |
+
+### Decision Flowchart
+
+```
+Is it a local file/git/build operation?
+  → YES → Use CLI
+  → NO  → Does it need authentication to an external service?
+            → YES → Use MCP (it handles auth)
+            → NO  → Is the output structured (JSON, tables, nested data)?
+                      → YES → Use MCP (structured parsing)
+                      → NO  → Use CLI (simpler, cheaper)
+```
+
+### Cost Comparison
+
+| | CLI Tool Call | MCP Tool Call |
+|---|---|---|
+| Tokens per call | ~50-200 (command + short output) | ~200-1000 (schema + request + structured response) |
+| Latency | Instant (local) | Network round-trip |
+| Auth handling | Manual (env vars, config files) | Automatic (MCP server manages) |
+| Best for | Reads, builds, git, file ops | APIs, databases, browsers, external services |
 
 ## File Reading Strategy
 
@@ -48,7 +102,7 @@ Long autonomous runs burn tokens fast. Every unnecessary tool call, verbose outp
 
 - Give subagents focused tasks — broad tasks cause expensive exploration
 - Include file paths and line numbers in subagent prompts to skip discovery
-- Use Sonnet/Haiku for implementation, Opus only for planning and review
+- Use fast models for implementation, strongest models only for planning and review
 - Kill subagents that are stuck — don't let them burn tokens retrying
 
 ## Context Window Awareness

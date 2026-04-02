@@ -18,18 +18,11 @@ Store all findings in working memory. Never ask what you can discover by reading
 
 Before any non-trivial task:
 
-1. Discover whether a relevant skill already exists.
+1. Use `find-skills` to discover whether a relevant skill already exists.
 2. Prefer an existing skill over improvising a workflow.
-3. Install broadly useful skills globally and project-specific skills only when the repo needs them.
-4. Keep a short skill list in the project root `AGENTS.md` when the project depends on them.
-
-Use the skill discovery workflow for:
-
-- finding and installing skills or plugins
-- planning and implementation tracking
-- debugging hard failures
-- testing and verification
-- code review and quality gates
+3. The `superpowers` plugin covers core workflows (planning, debugging, TDD, code review, parallel agents).
+4. For stack-specific skills, use `find-skills` to discover and install them per-project.
+5. Keep a short skill list in the project root `AGENTS.md` when the project depends on them.
 
 ## Planning
 
@@ -46,9 +39,9 @@ Never skip planning. "I'll just quickly fix this" is how bugs ship.
 
 When a task involves 3+ independent files or areas, use parallel agents if your tool supports it:
 
-- Lead agent (strongest model): Plans the approach, distributes tasks, reviews and integrates results
-- Worker agents: Each gets a complete, self-contained task description with all needed context
-- Reviewer agent: Validates the integrated result against the original plan before the task is marked done
+- Lead agent (strongest available model): Plans the approach, distributes tasks, reviews and integrates results
+- Worker agents (fast models): Each gets a complete, self-contained task description with all needed context
+- Reviewer agent (strong model or a different AI tool): Validates the integrated result against the original plan before the task is marked done
 <!-- /MODULE: agent-teams -->
 
 <!-- MODULE: quality-gates -->
@@ -74,6 +67,17 @@ Review every significant change before claiming done:
 - Verify no debugging artifacts remain: console.log, print(), TODO hacks, commented-out code
 - Confirm error handling covers failure paths, not just the happy path
 <!-- /MODULE: code-review -->
+
+<!-- MODULE: cross-tool-review -->
+## Cross-Tool Review
+
+When multiple AI tools are available, use them to review each other's work:
+
+- Different models catch different mistakes — cross-checking improves quality
+- After one tool implements, open the project in another tool and ask it to review the diff
+- All tools read the same AGENTS.md, so reviews follow the same standards
+- Rotate which tool implements and which reviews across features
+<!-- /MODULE: cross-tool-review -->
 
 <!-- MODULE: tdd -->
 ## Test-Driven Development
@@ -108,7 +112,7 @@ Always check for these before completing work:
 <!-- MODULE: skill-discovery -->
 ## Skill Discovery
 
-Before starting non-trivial work, check what skills, plugins, or extensions are available in your tool. Use existing skills over reinventing workflows. Install broadly useful skills globally and project-specific skills at project scope. After installing a skill, read its description before invoking it.
+Before starting non-trivial work, use `find-skills` to discover relevant skills for the current task. Use existing skills over reinventing workflows. Install stack-specific skills at project scope when they match the repository. After installing a skill, read its description before invoking it.
 <!-- /MODULE: skill-discovery -->
 
 <!-- MODULE: token-efficiency -->

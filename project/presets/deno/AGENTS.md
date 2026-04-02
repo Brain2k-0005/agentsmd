@@ -36,9 +36,9 @@ format:   deno fmt
 
 ## Skills
 
-- Use `find-skills` for testing, review, and automation workflows
-- Use `typescript-best-practices` or Deno-specific skills if available
-- Keep the preset aligned with the repo's task definitions
+- Use `find-skills` to discover skills matching your current task before starting
+- Install stack-specific skills only when they match the feature area
+- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

@@ -27,9 +27,9 @@ presets:
       - Document any stack-specific constraints in the project root `AGENTS.md`
       - Verify exact versions from manifests before making assumptions
     skills: |
-      - Use `find-skills` or the platform equivalent before non-trivial work
+      - Use `find-skills` to discover relevant skills before non-trivial work
       - Install stack-specific skills only when they are relevant to this repository
-      - Record any useful project-only skill dependencies in the project root `AGENTS.md`
+      - Record useful project-specific skills in the project root `AGENTS.md`
     test_command: fill in the real command
     test_framework: fill in
     testing: |
@@ -66,9 +66,9 @@ presets:
       - Use `cn()` for conditional class merging
       - Prefer Server Actions over API routes for mutations
     skills: |
-      - UI work: `web-design-guidelines`, `vercel-react-best-practices`, `vercel-composition-patterns`, `shadcn`
-      - Stack work: install project-specific skills only when they match the feature area
-      - Review the matching preset before editing route, data, or auth code
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Vitest
     testing: |
@@ -109,11 +109,9 @@ presets:
       - No business logic in controllers/endpoints - delegate to Application services
       - Use `CancellationToken` on all async methods
     skills: |
-      - API work: `aspnet-minimal-api-openapi`
-      - Testing: `csharp-xunit`, `csharp-async`
-      - Data access: `ef-core`
-      - General .NET guidance: `dotnet-best-practices`
-      - Keep project-specific skills documented here as the codebase evolves
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: dotnet test
     test_framework: xUnit
     testing: |
@@ -157,9 +155,9 @@ presets:
       - One module per domain concept in `src/domains/`
       - Prefer `pathlib.Path` over string path manipulation
     skills: |
-      - Testing and verification skills should be installed globally
-      - Add project-specific skills here if the stack grows beyond the base FastAPI workflow
-      - Use the matching preset before introducing new abstractions
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: uv run pytest
     test_framework: pytest + pytest-asyncio
     testing: |
@@ -200,9 +198,9 @@ presets:
       - Prefer ESM unless the project already uses CommonJS
       - Document any runtime-specific rules in the root `AGENTS.md`
     skills: |
-      - Install project skills for the relevant framework or runtime only when needed
-      - Use `find-skills` for debugging, testing, review, and automation workflows
-      - Keep stack-specific conventions in this preset instead of spreading them across files
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: project test runner
     testing: |
@@ -242,9 +240,9 @@ presets:
       - Use context-aware APIs for network and database work
       - Document concurrency or goroutine ownership rules in the root `AGENTS.md`
     skills: |
-      - Use `find-skills` for testing, review, and deployment workflows
-      - Add Go-specific skills only if the repo adopts a nonstandard framework or test pattern
-      - Keep linting and formatting commands aligned with the repo's actual toolchain
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: go test ./...
     test_framework: go test
     testing: |
@@ -283,9 +281,9 @@ presets:
       - Avoid unsafe code unless the repo already requires it
       - Record async runtime or feature-flag rules in the root `AGENTS.md`
     skills: |
-      - Use `find-skills` for review, testing, and build workflows
-      - Add Rust-specific skills only when the crate depends on a special framework
-      - Keep lint and format requirements in sync with Cargo configuration
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: cargo test
     test_framework: cargo test
     testing: |
@@ -324,9 +322,9 @@ presets:
       - Use immutable data carriers when practical
       - Document any framework conventions in the root `AGENTS.md`
     skills: |
-      - Use `find-skills` for testing, review, build, and deployment workflows
-      - Add Java-specific skills only when the repo standardizes on a framework
-      - Keep code generation or annotation rules centralized in this preset
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: mvn test
     test_framework: JUnit
     testing: |
@@ -365,9 +363,9 @@ presets:
       - Prefer conventional Ruby/Rails directory structure
       - Put repo-specific conventions in the root `AGENTS.md`
     skills: |
-      - Use `find-skills` for testing, review, and automation workflows
-      - Add Ruby-specific skills only when the stack requires a framework-specific pattern
-      - Keep style and linting rules aligned with the repository's formatter and linter
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: bundle exec rspec
     test_framework: RSpec
     testing: |
@@ -406,9 +404,9 @@ presets:
       - Use framework conventions instead of custom abstractions unless justified
       - Document any environment or runtime assumptions in the root `AGENTS.md`
     skills: |
-      - Use `find-skills` for testing, review, deployment, and automation workflows
-      - Add framework-specific skills only when the repository standardizes on them
-      - Keep code style and static analysis rules aligned with the repo tools
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: vendor/bin/phpunit
     test_framework: PHPUnit
     testing: |
@@ -447,9 +445,9 @@ presets:
       - Avoid hidden globals unless the project already depends on them
       - Record build-system rules in the root `AGENTS.md`
     skills: |
-      - Use `find-skills` for testing, review, and build workflows
-      - Add C-specific skills only when the repository adopts extra tooling
-      - Keep compiler and formatter settings aligned with the project
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: ctest --test-dir build
     test_framework: CTest
     testing: |
@@ -488,9 +486,9 @@ presets:
       - Make build flags and standard version explicit in the root `AGENTS.md`
       - Keep generated code and vendored dependencies isolated
     skills: |
-      - Use `find-skills` for testing, review, and build workflows
-      - Add C++-specific skills only when the repository standardizes on them
-      - Keep formatter, sanitizer, and static analysis settings aligned with the project
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: ctest --test-dir build
     test_framework: CTest
     testing: |
@@ -529,9 +527,9 @@ presets:
       - Align namespaces with the folder structure
       - Record any solution-specific conventions in the root `AGENTS.md`
     skills: |
-      - Use `aspnet-minimal-api-openapi`, `csharp-xunit`, `csharp-async`, `dotnet-best-practices`, and `ef-core` when relevant
-      - Use `find-skills` for testing, review, and automation workflows
-      - Add .NET-specific skills when the repository introduces extra infrastructure
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: dotnet test
     test_framework: xUnit
     testing: |
@@ -570,9 +568,9 @@ presets:
       - Avoid overusing extension functions when plain functions are clearer
       - Document platform-specific rules in the root `AGENTS.md`
     skills: |
-      - Use `find-skills` for testing, review, and build workflows
-      - Add Kotlin-specific skills when the repo standardizes on a framework
-      - Keep formatter and lint configuration in sync with this preset
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: ./gradlew test
     test_framework: JUnit / Kotest
     testing: |
@@ -611,9 +609,9 @@ presets:
       - Align target and module names with folders
       - Document platform-specific rules in the root `AGENTS.md`
     skills: |
-      - Use `find-skills` for testing, review, and automation workflows
-      - Add Swift-specific skills only if the repository adopts extra tooling
-      - Keep this preset aligned with the repo's actual package manager and formatter
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: swift test
     test_framework: XCTest
     testing: |
@@ -652,9 +650,9 @@ presets:
       - Avoid premature abstraction in UI code
       - Record design-system and folder rules in the root `AGENTS.md`
     skills: |
-      - Use `web-design-guidelines`, `vercel-react-best-practices`, `vercel-composition-patterns`, and `shadcn` for UI work when available
-      - Use `find-skills` before testing, review, and automation work
-      - Add React-specific skills only if the repository standardizes on them
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Vitest / Jest
     testing: |
@@ -693,9 +691,9 @@ presets:
       - Avoid mixing framework-specific patterns across components
       - Record design-system and folder rules in the root `AGENTS.md`
     skills: |
-      - Use `web-design-guidelines` for UI work when available
-      - Use `find-skills` for testing, review, and automation workflows
-      - Add Vue-specific skills only if the repository standardizes on them
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Vitest
     testing: |
@@ -734,9 +732,9 @@ presets:
       - Keep RxJS usage intentional and minimal
       - Record Angular-specific conventions in the root `AGENTS.md`
     skills: |
-      - Use `angular-component`, `angular-routing`, `angular-signals`, `angular-http`, `angular-forms`, `angular-testing`, and `angular-tooling` when available
-      - Use `find-skills` before broader testing, review, and automation workflows
-      - Add Angular-specific skills only when they are relevant to the repo
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Karma / Jest
     testing: |
@@ -775,9 +773,9 @@ presets:
       - Keep platform-specific code isolated
       - Record platform and architecture rules in the root `AGENTS.md`
     skills: |
-      - Use `find-skills` for testing, review, and automation workflows
-      - Add Flutter-specific skills only if the project standardizes on a state or navigation library
-      - Keep build and formatting rules aligned with the repo's actual Flutter tooling
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: flutter test
     test_framework: flutter_test
     testing: |
@@ -816,9 +814,9 @@ presets:
       - Avoid mixing framework styles from React or Vue
       - Record app-specific rules in the root `AGENTS.md`
     skills: |
-      - Use `web-design-guidelines` for UI work when available
-      - Use `find-skills` before testing, review, and automation workflows
-      - Add Svelte-specific skills only when the repo standardizes on them
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Vitest
     testing: |
@@ -857,9 +855,9 @@ presets:
       - Keep shared UI and route logic separated cleanly
       - Record route, data, and deployment rules in the root `AGENTS.md`
     skills: |
-      - Use `web-design-guidelines` and React-focused skills for UI work when available
-      - Use `find-skills` for testing, review, and automation workflows
-      - Add Remix-specific skills only if the repo standardizes on them
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Vitest
     testing: |
@@ -898,9 +896,9 @@ presets:
       - Avoid turning simple pages into over-engineered React apps
       - Record site and content rules in the root `AGENTS.md`
     skills: |
-      - Use `web-design-guidelines` for UI and layout work when available
-      - Use `find-skills` for testing, review, and automation workflows
-      - Add Astro-specific skills only if the repository standardizes on them
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Vitest
     testing: |
@@ -939,9 +937,9 @@ presets:
       - Use route- and feature-based folders when the project grows
       - Record app-specific rules in the root `AGENTS.md`
     skills: |
-      - Use `web-design-guidelines` for UI work when available
-      - Use `find-skills` for testing, review, and automation workflows
-      - Add Solid-specific skills only if the repo standardizes on them
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Vitest
     testing: |
@@ -979,9 +977,9 @@ presets:
       - Avoid React-style patterns
       - Record routing and deployment rules in the root `AGENTS.md`
     skills: |
-      - Use `web-design-guidelines` for UI work when available
-      - Use `find-skills` for testing, review, and automation workflows
-      - Add Solid-specific skills only if the repository standardizes on them
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Vitest
     testing: |
@@ -1020,10 +1018,9 @@ presets:
       - Keep adapters and integrations isolated from business logic
       - Record architecture and layering rules in the root `AGENTS.md`
     skills: |
-      - Use `find-skills` for testing, review, and automation workflows
-      - Install API-focused skills when the repo needs generated docs or integration helpers
-      - Use `nodejs-best-practices`, `typescript-best-practices`, or NestJS-specific skills if available
-      - Keep Nest-specific conventions in this preset
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Jest
     testing: |
@@ -1062,10 +1059,9 @@ presets:
       - Avoid framework-specific abstractions that hide the HTTP layer
       - Record project-specific routing rules in the root `AGENTS.md`
     skills: |
-      - Use `find-skills` for testing, review, and automation workflows
-      - Add API documentation or security skills when the repo needs them
-      - Use `nodejs-best-practices` and `typescript-best-practices` if the repo is TypeScript-first
-      - Keep Express conventions and folder structure in this preset
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Jest / Mocha
     testing: |
@@ -1103,10 +1099,9 @@ presets:
       - Keep Eloquent usage consistent with the repo's conventions
       - Record queue, event, and policy rules in the root `AGENTS.md`
     skills: |
-      - Use `find-skills` for testing, review, and automation workflows
-      - Prefer Laravel-specific installable skills when the repo depends on common packages
-      - Use `php-code-review`, `php-testing`, or `laravel-best-practices` if those skills are available
-      - Keep framework conventions centralized in this preset rather than scattered
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: vendor/bin/pest
     test_framework: Pest
     testing: |
@@ -1146,10 +1141,9 @@ presets:
       - Keep routers, services, and repositories separated when the app grows
       - Record API and environment rules in the root `AGENTS.md`
     skills: |
-      - Use `find-skills` for testing, review, and automation workflows
-      - Add FastAPI-specific skills if the repository depends on API docs or async helpers
-      - Use `python-best-practices`, `python-testing`, or `fastapi-best-practices` if available
-      - Keep this preset aligned with the repo's testing and type-checking tools
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: uv run pytest
     test_framework: pytest
     testing: |
@@ -1187,10 +1181,9 @@ presets:
       - Use forms, serializers, or services consistently with the repo
       - Record admin, migration, and settings rules in the root `AGENTS.md`
     skills: |
-      - Use `find-skills` for testing, review, and automation workflows
-      - Add Django-specific skills if the repository adopts any framework plugins or helpers
-      - Use `python-best-practices`, `python-testing`, or `django-best-practices` if available
-      - Keep conventions centralized in this preset
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: uv run python manage.py test
     test_framework: Django test / pytest
     testing: |
@@ -1228,9 +1221,9 @@ presets:
       - Avoid mixing Bun and Node package-manager conventions unless the repo already does
       - Record deployment and runtime rules in the root `AGENTS.md`
     skills: |
-      - Use `find-skills` for testing, review, and automation workflows
-      - Use `nodejs-best-practices`, `typescript-best-practices`, or Bun-specific skills if available
-      - Keep the preset aligned with the repo's actual linter and formatter
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: bun test
     test_framework: Bun test
     testing: |
@@ -1269,9 +1262,9 @@ presets:
       - Avoid Node-specific patterns unless the repo intentionally uses them
       - Record runtime and permission rules in the root `AGENTS.md`
     skills: |
-      - Use `find-skills` for testing, review, and automation workflows
-      - Use `typescript-best-practices` or Deno-specific skills if available
-      - Keep the preset aligned with the repo's task definitions
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: deno test
     test_framework: Deno test
     testing: |
@@ -1309,9 +1302,9 @@ presets:
       - Use the package manager already encoded in the repo
       - Record app-specific rules in the root `AGENTS.md`
     skills: |
-      - Use `web-design-guidelines` for UI work when available
-      - Use `vercel-react-best-practices`, `vercel-composition-patterns`, or framework-specific skills when relevant
-      - Use `find-skills` for testing, review, and automation workflows
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Vitest
     testing: |
@@ -1349,9 +1342,9 @@ presets:
       - Keep query and route configuration close to the feature that uses it
       - Record app and deployment rules in the root `AGENTS.md`
     skills: |
-      - Use `web-design-guidelines` for UI work when available
-      - Use `find-skills` for testing, review, and automation workflows
-      - Add TanStack-specific skills only if the repository standardizes on them
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: npm test
     test_framework: Vitest
     testing: |
@@ -1389,9 +1382,9 @@ presets:
       - Avoid leaking platform-specific logic into shared UI code
       - Record permission and window rules in the root `AGENTS.md`
     skills: |
-      - Use `find-skills` for testing, review, and automation workflows
-      - Add Rust skills plus `web-design-guidelines` or React/TypeScript skills if available
-      - Keep security-sensitive desktop permissions documented
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: cargo test
     test_framework: cargo test
     testing: |
@@ -1430,9 +1423,9 @@ presets:
       - Keep Phoenix contexts and boundaries explicit
       - Record project conventions in the root `AGENTS.md`
     skills: |
-      - Use `find-skills` for testing, review, and automation workflows
-      - Add Elixir-specific skills when the repository standardizes on a framework
-      - Keep formatter and test commands aligned with the mix configuration
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: mix test
     test_framework: ExUnit
     testing: |
@@ -1471,9 +1464,9 @@ presets:
       - Avoid excessive global state
       - Record repo-specific conventions in the root `AGENTS.md`
     skills: |
-      - Use `find-skills` for testing, review, and automation workflows
-      - Add Perl-specific skills only when the repository standardizes on them
-      - Keep the linter and formatter choice aligned with the project
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: prove -l
     test_framework: Test::More
     testing: |
@@ -1512,9 +1505,9 @@ presets:
       - Avoid implicit-heavy designs unless the repo already relies on them
       - Record repo-specific conventions in the root `AGENTS.md`
     skills: |
-      - Use `find-skills` for testing, review, and automation workflows
-      - Add Scala-specific skills only when the repository standardizes on them
-      - Keep formatter and build rules aligned with the actual sbt setup
+      - Use `find-skills` to discover skills matching your current task before starting
+      - Install stack-specific skills only when they match the feature area
+      - Keep skill dependencies documented in the project root AGENTS.md
     test_command: sbt test
     test_framework: ScalaTest / MUnit
     testing: |

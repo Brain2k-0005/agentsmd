@@ -35,9 +35,9 @@ format:   cargo fmt
 
 ## Skills
 
-- Use `find-skills` for testing, review, and automation workflows
-- Add Rust skills plus `web-design-guidelines` or React/TypeScript skills if available
-- Keep security-sensitive desktop permissions documented
+- Use `find-skills` to discover skills matching your current task before starting
+- Install stack-specific skills only when they match the feature area
+- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

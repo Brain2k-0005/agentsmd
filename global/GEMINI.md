@@ -29,13 +29,15 @@ When a repository has `project/presets/`, read the matching preset before editin
 - `dotnet` for ASP.NET Core and Clean Architecture repos
 - `python` for FastAPI / SQLAlchemy repos
 
-## Subagents
+## Agent Teams
 
-For tasks with 3+ independent workstreams, dispatch subagents:
+Gemini CLI supports subagent dispatch for parallel work:
 
-- Each subagent gets a clear, self-contained task description with all required context
-- Run independent workstreams in parallel - do not serialize work that can overlap
-- After subagents complete, integrate and review their output before reporting done
+- **Lead** (strongest Gemini model): Plans the approach, distributes tasks, integrates results
+- **Workers** (fast Gemini models): Each gets a focused, self-contained task with all required context
+- **Reviewer** (strong model, or use Claude/Codex for cross-tool review): Validates against plan
+- Run independent workstreams in parallel — do not serialize work that can overlap
+- After workers complete, the lead integrates and reviews all output before reporting done
 
 ## MCP Server Integration
 
@@ -44,6 +46,15 @@ Leverage configured MCP servers to extend capabilities beyond the default toolse
 - Check available MCP tools at the start of complex tasks
 - Use MCP servers for extended file access, external APIs, specialized search, database queries
 - Prefer MCP tools over workarounds when an appropriate server is configured
+
+## Cross-Tool Review
+
+When reviewing code written by another AI tool (Claude, Codex):
+
+- Read the full diff before commenting
+- Check against the project's AGENTS.md quality gates
+- Focus on what the other tool might miss: alternative approaches, edge cases, documentation gaps
+- When your code is reviewed by another tool, fix flagged issues without defensiveness
 
 ## Token Efficiency
 

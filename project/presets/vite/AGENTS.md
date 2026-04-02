@@ -35,9 +35,9 @@ format:   npx prettier --write .
 
 ## Skills
 
-- Use `web-design-guidelines` for UI work when available
-- Use `vercel-react-best-practices`, `vercel-composition-patterns`, or framework-specific skills when relevant
-- Use `find-skills` for testing, review, and automation workflows
+- Use `find-skills` to discover skills matching your current task before starting
+- Install stack-specific skills only when they match the feature area
+- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

@@ -37,11 +37,9 @@ format:   dotnet format
 
 ## Skills
 
-- API work: `aspnet-minimal-api-openapi`
-- Testing: `csharp-xunit`, `csharp-async`
-- Data access: `ef-core`
-- General .NET guidance: `dotnet-best-practices`
-- Keep project-specific skills documented here as the codebase evolves
+- Use `find-skills` to discover skills matching your current task before starting
+- Install stack-specific skills only when they match the feature area
+- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

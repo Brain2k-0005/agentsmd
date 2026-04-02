@@ -39,9 +39,9 @@ typecheck: uv run mypy src/
 
 ## Skills
 
-- Testing and verification skills should be installed globally
-- Add project-specific skills here if the stack grows beyond the base FastAPI workflow
-- Use the matching preset before introducing new abstractions
+- Use `find-skills` to discover skills matching your current task before starting
+- Install stack-specific skills only when they match the feature area
+- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

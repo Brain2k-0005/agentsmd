@@ -22,6 +22,14 @@ Copilot reads context from the repository root:
 - Verify type safety when the project uses static typing
 - Check that suggestions follow the commit conventions from git log
 
+## Multi-Tool Coordination
+
+Copilot does not have native agent team support. For parallel work:
+
+- Use Copilot for focused, single-file suggestions and completions
+- For multi-file coordination, pair with Claude Code, Codex, or Gemini which support agent teams
+- Copilot can serve as a reviewer: open the project in Copilot after another tool implements
+
 ## Boundaries
 
 - Never suggest changes to generated files, migrations, or secrets

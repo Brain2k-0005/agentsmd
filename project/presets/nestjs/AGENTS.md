@@ -36,10 +36,9 @@ format:   npx prettier --write .
 
 ## Skills
 
-- Use `find-skills` for testing, review, and automation workflows
-- Install API-focused skills when the repo needs generated docs or integration helpers
-- Use `nodejs-best-practices`, `typescript-best-practices`, or NestJS-specific skills if available
-- Keep Nest-specific conventions in this preset
+- Use `find-skills` to discover skills matching your current task before starting
+- Install stack-specific skills only when they match the feature area
+- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

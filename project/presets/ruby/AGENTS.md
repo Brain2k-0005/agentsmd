@@ -36,9 +36,9 @@ format:   bundle exec rubocop -A
 
 ## Skills
 
-- Use `find-skills` for testing, review, and automation workflows
-- Add Ruby-specific skills only when the stack requires a framework-specific pattern
-- Keep style and linting rules aligned with the repository's formatter and linter
+- Use `find-skills` to discover skills matching your current task before starting
+- Install stack-specific skills only when they match the feature area
+- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

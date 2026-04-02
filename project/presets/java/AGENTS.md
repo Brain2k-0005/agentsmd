@@ -36,9 +36,9 @@ format:   mvn spotless:apply
 
 ## Skills
 
-- Use `find-skills` for testing, review, build, and deployment workflows
-- Add Java-specific skills only when the repo standardizes on a framework
-- Keep code generation or annotation rules centralized in this preset
+- Use `find-skills` to discover skills matching your current task before starting
+- Install stack-specific skills only when they match the feature area
+- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

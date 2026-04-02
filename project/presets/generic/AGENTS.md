@@ -35,9 +35,9 @@ format:   # fill in the format command
 
 ## Skills
 
-- Use `find-skills` or the platform equivalent before non-trivial work
+- Use `find-skills` to discover relevant skills before non-trivial work
 - Install stack-specific skills only when they are relevant to this repository
-- Record any useful project-only skill dependencies in the project root `AGENTS.md`
+- Record useful project-specific skills in the project root `AGENTS.md`
 
 ## Testing
 

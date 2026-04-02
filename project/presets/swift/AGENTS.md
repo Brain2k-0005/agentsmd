@@ -36,9 +36,9 @@ format:   swiftformat .
 
 ## Skills
 
-- Use `find-skills` for testing, review, and automation workflows
-- Add Swift-specific skills only if the repository adopts extra tooling
-- Keep this preset aligned with the repo's actual package manager and formatter
+- Use `find-skills` to discover skills matching your current task before starting
+- Install stack-specific skills only when they match the feature area
+- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

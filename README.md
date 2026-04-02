@@ -4,6 +4,77 @@ Universal setup for AI coding agents that learn, plan, and ship code autonomousl
 
 ---
 
+## Get Started in 60 Seconds
+
+1. Clone this repo
+2. Run the installer
+3. Open any project -- your AI agent is now autonomous
+
+**macOS / Linux / WSL:**
+```bash
+git clone https://github.com/Brain2k-0005/autonomous-agents.git
+cd autonomous-agents
+bash install.sh
+```
+
+**Windows PowerShell:**
+```powershell
+git clone https://github.com/Brain2k-0005/autonomous-agents.git
+cd autonomous-agents
+.\install.ps1
+```
+
+That's it. Your AI coding agent will now self-discover your project, plan before coding, and verify its own work -- no hand-holding required.
+
+---
+
+## What is AGENTS.md?
+
+AGENTS.md is an open standard (backed by the Linux Foundation) that tells AI coding agents how to behave in your project. Think of it like a `.gitignore` for Git or an `.editorconfig` for your editor -- but for AI agents.
+
+When you put an AGENTS.md file in your project, any compatible AI tool (Claude Code, Codex, Gemini, Copilot, Cursor, and more) will read it and follow the rules inside. This means:
+
+- The AI knows your tech stack without asking
+- It follows your coding conventions automatically
+- It runs the right commands (`npm test`, `cargo build`, `dotnet test`, etc.)
+- It respects boundaries (never touch migrations, never commit secrets)
+
+This repo gives you ready-made AGENTS.md files for 37 different tech stacks, plus global rules that make every AI agent smarter out of the box.
+
+---
+
+## How Does the AI Learn By Itself?
+
+When you open a project with this config installed, your AI agent automatically:
+
+```
+You open a project
+    |
+Agent reads package.json, pyproject.toml, go.mod, etc.
+    |
+Agent detects: "This is a Next.js 15 project with TypeScript and Tailwind"
+    |
+Agent reads your AGENTS.md for project-specific rules
+    |
+Agent checks git log for your commit style
+    |
+Agent starts working -- no questions asked
+```
+
+**No setup per project.** The global config teaches the agent HOW to learn. The project AGENTS.md teaches it WHAT to know about your specific repo. If there's no project AGENTS.md, the agent still works -- it just discovers everything from your files.
+
+### Skill Self-Discovery
+
+The agent doesn't just follow rules -- it actively searches for better tools:
+
+1. Before any non-trivial task, it runs `find-skills` to check if a specialized skill exists
+2. If a skill exists (debugging, testing, code review, etc.), it uses that instead of improvising
+3. Skills it finds useful get remembered for future tasks
+
+This means the agent gets better over time without you doing anything.
+
+---
+
 ## What This Is
 
 A modular configuration system for AI CLI coding agents. Instead of hand-holding your agent through every task, this repo teaches it to:
@@ -30,60 +101,48 @@ autonomous-agents/
 ├── global/
 │   ├── AGENTS.md                  # Universal agent rules (all tools)
 │   ├── CLAUDE.md                  # Claude Code specific config
+│   ├── CODEX.md                   # Codex CLI specific config
+│   ├── COPILOT.md                 # GitHub Copilot specific config
 │   ├── GEMINI.md                  # Gemini CLI specific config
-│   └── claude-settings.json       # Claude Code settings template
+│   ├── claude-settings.json       # Claude Code settings (conservative)
+│   └── claude-settings-power.json # Claude Code settings (unrestricted)
 ├── project/
 │   ├── AGENTS.md                  # Generic project template
-│   └── presets/
-│       ├── generic/AGENTS.md      # Fallback template
-│       ├── nextjs/AGENTS.md       # Next.js preset
-│       ├── dotnet/AGENTS.md       # .NET preset
-│       ├── python/AGENTS.md       # Python preset
-│       ├── nodejs/AGENTS.md       # Node.js preset
-│       ├── go/AGENTS.md           # Go preset
-│       ├── rust/AGENTS.md         # Rust preset
-│       ├── java/AGENTS.md         # Java preset
-│       ├── ruby/AGENTS.md         # Ruby preset
-│       ├── php/AGENTS.md          # PHP preset
-│       ├── c/AGENTS.md            # C preset
-│       ├── cpp/AGENTS.md          # C++ preset
-│       ├── csharp/AGENTS.md       # C# preset
-│       ├── kotlin/AGENTS.md       # Kotlin preset
-│       ├── swift/AGENTS.md        # Swift preset
-│       ├── react/AGENTS.md        # React preset
-│       ├── vue/AGENTS.md          # Vue preset
-│       ├── angular/AGENTS.md      # Angular preset
-│       ├── flutter/AGENTS.md      # Flutter preset
-│       ├── svelte/AGENTS.md       # Svelte preset
-│       ├── remix/AGENTS.md        # Remix preset
-│       ├── astro/AGENTS.md        # Astro preset
-│       ├── solid/AGENTS.md        # Solid preset
-│       ├── solidstart/AGENTS.md   # SolidStart preset
-│       ├── nestjs/AGENTS.md       # NestJS preset
-│       ├── express/AGENTS.md      # Express preset
-│       ├── laravel/AGENTS.md      # Laravel preset
-│       ├── fastapi/AGENTS.md      # FastAPI preset
-│       ├── django/AGENTS.md       # Django preset
-│       ├── bun/AGENTS.md          # Bun preset
-│       ├── deno/AGENTS.md         # Deno preset
-│       ├── vite/AGENTS.md         # Vite preset
-│       ├── tanstack/AGENTS.md     # TanStack preset
-│       ├── tauri/AGENTS.md        # Tauri preset
-│       ├── elixir/AGENTS.md       # Elixir preset
-│       ├── perl/AGENTS.md         # Perl preset
-│       └── scala/AGENTS.md        # Scala preset
+│   └── presets/                   # 37 stack-specific templates
+│       ├── nextjs/AGENTS.md       # (and 36 more -- run --list-presets to see all)
+│       ├── dotnet/AGENTS.md
+│       ├── python/AGENTS.md
+│       └── ...
 ├── modules/
 │   ├── agent-teams.md             # Multi-agent coordination
 │   ├── tdd.md                     # Test-driven development
 │   ├── code-review.md             # Automated code review
 │   ├── skill-discovery.md         # Skill/plugin discovery
 │   ├── quality-gates.md           # Verification checklist
-│   └── token-efficiency.md        # Token optimization + CLI vs MCP
+│   ├── token-efficiency.md        # Token optimization + CLI vs MCP
+│   └── cross-tool-review.md      # Cross-tool review for dual control
+├── templates/
+│   ├── preset-template.md         # Template for generating presets
+│   ├── preset-config.yaml         # Configuration for all 37 presets
+│   ├── generate-presets.sh        # Preset generator (Bash)
+│   └── generate-presets.ps1       # Preset generator (PowerShell)
+├── tests/
+│   ├── install_test.bats          # Installer integration tests
+│   └── test_helper.bash           # Test utilities
 └── examples/
     ├── nextjs/AGENTS.md           # Example for Next.js projects
     ├── dotnet/AGENTS.md           # Example for .NET projects
     └── python/AGENTS.md           # Example for Python projects
 ```
+
+To see all 37 available presets:
+
+```bash
+./install.sh --list-presets     # macOS / Linux / WSL
+./install.ps1 -ListPresets      # Windows PowerShell
+```
+
+Available stacks: angular, astro, bun, c, cpp, csharp, deno, django, dotnet, elixir, express, fastapi, flutter, generic, go, java, kotlin, laravel, nestjs, nextjs, nodejs, perl, php, python, react, remix, ruby, rust, scala, solid, solidstart, svelte, swift, tanstack, tauri, vite, vue.
 
 ---
 
@@ -101,39 +160,32 @@ autonomous-agents/
 
 You need at least one AI CLI tool installed. The config files are inert without one.
 
-### Recommended Claude Code Plugins / Skills
-
-If using Claude Code, these plugins and skills extend the autonomous workflow:
+### Recommended Plugin
 
 | Plugin | Purpose |
 |--------|---------|
-| `superpowers` | Workflow skills: planning, parallel agents, writing |
-| `code-review` | Automated review against checklists |
-| `frontend-design` | UI component generation (optional) |
-| `stripe` | Stripe API integration (if applicable) |
-| `supabase` | Supabase integration (if applicable) |
+| `superpowers` | Core workflow: planning, parallel agents, code review, debugging, TDD |
 
-Install plugins via `/install-skill <name>` inside Claude Code.
+Install it inside Claude Code:
 
-Useful globally installed skills:
+```
+/install-skill superpowers
+```
 
-- `find-skills` for skill discovery and installation
-- planning and implementation skills for non-trivial work
-- debugging, testing, review, and quality-gate skills
-- git workflow skills for commit and PR hygiene
+The agent will use `find-skills` to discover and install any additional skills it needs for your specific project. You don't need to manually install stack-specific plugins.
 
 ---
 
-## Quick Start
+## Installation Details
 
 ### Automated Install
 
 ```bash
 # Clone the repo
-git clone <repo-url>
+git clone https://github.com/Brain2k-0005/autonomous-agents.git
 cd autonomous-agents
 
-# Interactive installer — detects your tools and copies the right files
+# Interactive installer -- detects your tools and copies the right files
 bash install.sh       # macOS / Linux / WSL
 ./install.ps1         # Windows PowerShell
 ```
@@ -162,7 +214,7 @@ Non-interactive examples:
 
 ### Manual Install
 
-Copy only what you need:
+If you prefer to copy files by hand:
 
 ```bash
 # Global config (pick your tools)
@@ -181,8 +233,6 @@ For any project, copy the matching preset into the repo root:
 cp project/presets/<your-stack>/AGENTS.md /path/to/your/project/AGENTS.md
 ```
 
-Available stacks: angular, astro, bun, c, cpp, csharp, deno, django, dotnet, elixir, express, fastapi, flutter, generic, go, java, kotlin, laravel, nestjs, nextjs, nodejs, perl, php, python, react, remix, ruby, rust, scala, solid, solidstart, svelte, swift, tanstack, tauri, vite, vue.
-
 ---
 
 ## How It Works
@@ -193,15 +243,15 @@ Configuration flows from general to specific, with later layers overriding earli
 
 ```
 Global AGENTS.md          Base rules for all projects and all tools
-  └── Tool-specific       CLAUDE.md / GEMINI.md enhancements
+  └── Tool-specific       CLAUDE.md / CODEX.md / COPILOT.md / GEMINI.md enhancements
        └── Project AGENTS.md    Project-level overrides and context
             └── Modules         Composable behaviors (add/remove as needed)
 ```
 
 - **Global AGENTS.md** -- applies to every project you open. Defines planning discipline, skill discovery, review habits, git conventions, and quality gates.
-- **CLAUDE.md / GEMINI.md** -- tool-specific extensions that use features unique to that CLI (skills, MCP servers, model routing, presets).
+- **CLAUDE.md / CODEX.md / COPILOT.md / GEMINI.md** -- tool-specific extensions that use features unique to that CLI (skills, MCP servers, model routing, presets).
 - **Project AGENTS.md** -- lives in each repo root. Describes the stack, folder structure, test commands, project-specific rules, and useful skills.
-- **Project presets** -- stack-specific templates you can copy into a new repo before customizing. The current catalog includes generic, Next.js, .NET, Python, Node.js, Go, Rust, Java, Ruby, PHP, C, C++, C#, Kotlin, Swift, React, Vue, Angular, Flutter, Svelte, Remix, Astro, Solid, SolidStart, NestJS, Express, Laravel, FastAPI, Django, Bun, Deno, Vite, TanStack, Tauri, Elixir, Perl, and Scala.
+- **Project presets** -- stack-specific templates you can copy into a new repo before customizing. The current catalog includes 37 stacks covering all major languages and frameworks.
 - **Modules** -- composable blocks already embedded in the global config. Enable or disable them by editing the global file.
 
 ### The Self-Learning Flow
@@ -231,6 +281,7 @@ Each module is a composable block inside `global/AGENTS.md`, wrapped in HTML com
 | `skill-discovery` | Find and install skills/plugins across platforms dynamically |
 | `quality-gates` | Verification checklist the agent must pass before claiming a task is done |
 | `token-efficiency` | Minimize token usage: CLI vs MCP decisions, targeted reads, batch operations |
+| `cross-tool-review` | Use multiple AI tools to review each other's work for higher quality |
 
 ### Adding or Removing Modules
 
@@ -251,16 +302,21 @@ Delete or comment out any block you do not need. The remaining modules continue 
 
 Large context windows are powerful but expensive. The `token-efficiency` module teaches agents to minimize waste:
 
-### CLI vs MCP Decision Matrix
+### When to Use CLI vs MCP
 
-| Operation | Prefer | Why |
-|-----------|--------|-----|
-| Read a known file | Dedicated `Read` tool | Direct, line numbers, no overhead |
-| Search for patterns | `Grep` / `Glob` tool | Faster than MCP, cheaper than Bash |
-| Simple file ops | CLI (Bash) | One-shot, low token cost |
-| Database queries | MCP server | Structured access, connection pooling |
-| External API calls | MCP server | Auth handling, rate limiting |
-| Browser automation | MCP server | Stateful multi-step workflows |
+**CLI tools** are cheap, fast, and local. **MCP tools** give structured access to external services.
+
+| Task | Use CLI | Use MCP |
+|------|---------|---------|
+| **File operations** | Read, Grep, Glob, Bash(`ls`, `cp`) | -- |
+| **Git** | `git log`, `git diff`, `gh pr create` | -- |
+| **Build/test/lint** | `npm test`, `cargo build`, `dotnet test` | -- |
+| **Stripe payments** | `stripe listen` (webhooks) | Check subscriptions, list charges, create customers |
+| **Database** | Run migrations, seed data | Query records, explore schemas, debug data |
+| **GitHub** | Simple PR/issue ops via `gh` | Search across repos, read threaded comments |
+| **Browser** | `curl` for downloads/health checks | Multi-step forms, screenshots, DOM interaction |
+
+**Rule of thumb:** If it's local and one-shot, use CLI. If it needs auth, pagination, or structured data from an external service, use MCP.
 
 ### Key Practices
 
@@ -290,8 +346,8 @@ Large context windows are powerful but expensive. The `token-efficiency` module 
 
 Two settings files are provided:
 
-- `claude-settings.json` — conservative defaults (safe shell command patterns)
-- `claude-settings-power.json` — unrestricted shell access for power users
+- `claude-settings.json` -- conservative defaults (safe shell command patterns)
+- `claude-settings-power.json` -- unrestricted shell access for power users
 
 Edit the appropriate file to control permissions:
 
@@ -303,12 +359,11 @@ Copy it to `~/.claude/settings.json` (global) or `.claude/settings.json` (per-pr
 
 ### Adding Skills
 
-Use the `skill-discovery` module to find and install platform-specific plugins:
+```
+/install-skill superpowers      # Core workflow skills
+```
 
-```
-/install-skill superpowers      # Claude Code
-/install-skill code-review      # Claude Code
-```
+The agent uses `find-skills` to discover additional skills as needed. You rarely need to install skills manually.
 
 ---
 
@@ -319,9 +374,9 @@ The AGENTS.md standard is read by multiple tools. Here is where each tool looks 
 | Tool | Global Config Location | Project Config Location |
 |------|----------------------|------------------------|
 | Claude Code | `~/.claude/AGENTS.md` + `CLAUDE.md` | `./AGENTS.md` + `.claude/settings.json` |
-| Codex CLI | `~/.codex/AGENTS.md` | `./AGENTS.md` |
+| Codex CLI | `~/.codex/AGENTS.md` + `CODEX.md` | `./AGENTS.md` |
 | Gemini CLI | `~/.gemini/AGENTS.md` + `GEMINI.md` | `./AGENTS.md` |
-| GitHub Copilot | (via repository) | `./AGENTS.md` |
+| GitHub Copilot | (via repository) | `./AGENTS.md` + `COPILOT.md` |
 | Cursor | (via repository) | `./AGENTS.md` + `.cursorrules` |
 | Windsurf | (via repository) | `./AGENTS.md` + `.windsurfrules` |
 | Zed | (via repository) | `./AGENTS.md` |

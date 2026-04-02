@@ -18,13 +18,24 @@ Codex discovers skills from `.codex/skills/` in the project root:
 - Global skills go in `~/.codex/skills/`
 - Prefer existing skills over ad hoc prompting
 
-## Parallel Agents
+## Agent Teams
 
-For tasks with 3+ independent workstreams:
+Codex CLI supports parallel task execution:
 
-- Break work into self-contained tasks
-- Each task gets complete context and file paths
-- Integrate and verify all output before reporting done
+- **Lead** (strongest available model): Plans, distributes, and integrates work
+- **Workers** (fast models): Execute focused tasks in parallel within the sandbox
+- **Reviewer** (strong model, or use Claude/Gemini for cross-tool review): Validates result
+- Break work into self-contained tasks with complete context and file paths
+- Each worker operates independently — no cross-dependencies during implementation
+
+## Cross-Tool Review
+
+When reviewing code written by another AI tool (Claude, Gemini):
+
+- Read the full diff before commenting
+- Check against the project's AGENTS.md quality gates
+- Focus on what the other tool might miss: over-engineering, unnecessary complexity, practical issues
+- When your code is reviewed by another tool, fix flagged issues without defensiveness
 
 ## Token Efficiency
 

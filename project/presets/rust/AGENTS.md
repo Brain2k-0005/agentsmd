@@ -36,9 +36,9 @@ format:   cargo fmt
 
 ## Skills
 
-- Use `find-skills` for review, testing, and build workflows
-- Add Rust-specific skills only when the crate depends on a special framework
-- Keep lint and format requirements in sync with Cargo configuration
+- Use `find-skills` to discover skills matching your current task before starting
+- Install stack-specific skills only when they match the feature area
+- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

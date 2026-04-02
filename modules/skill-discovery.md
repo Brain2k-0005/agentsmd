@@ -2,15 +2,15 @@
 
 ## Before Starting Any Task
 
-Check what skills and tools are available. Skills provide specialized workflows that are faster and more reliable than building from scratch.
+Use `find-skills` to discover relevant skills for the current task. This is the primary discovery mechanism — agents should self-discover what they need rather than relying on hardcoded skill lists. Skills provide specialized workflows that are faster and more reliable than building from scratch.
 
 ## Discovery by Platform
 
 **Claude Code**
-- Use the `find-skills` skill to search for skills matching your task
+- Use `find-skills` to search for skills matching your task — this is the default discovery path
+- The `superpowers` plugin provides core workflow skills (planning, debugging, TDD, code review, parallel agents)
 - List installed plugins: run `/plugins` or check settings
 - Install a plugin: `/install-plugin <name>@<marketplace>`
-- Superpowers skills activate automatically when relevant
 
 **Codex CLI**
 - Check `.codex/skills/` in the repo for project skills

@@ -36,9 +36,9 @@ format:   perltidy -b
 
 ## Skills
 
-- Use `find-skills` for testing, review, and automation workflows
-- Add Perl-specific skills only when the repository standardizes on them
-- Keep the linter and formatter choice aligned with the project
+- Use `find-skills` to discover skills matching your current task before starting
+- Install stack-specific skills only when they match the feature area
+- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

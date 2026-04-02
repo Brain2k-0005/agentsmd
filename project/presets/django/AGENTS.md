@@ -35,10 +35,9 @@ format:   uv run ruff format .
 
 ## Skills
 
-- Use `find-skills` for testing, review, and automation workflows
-- Add Django-specific skills if the repository adopts any framework plugins or helpers
-- Use `python-best-practices`, `python-testing`, or `django-best-practices` if available
-- Keep conventions centralized in this preset
+- Use `find-skills` to discover skills matching your current task before starting
+- Install stack-specific skills only when they match the feature area
+- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

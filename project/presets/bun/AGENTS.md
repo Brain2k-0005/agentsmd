@@ -35,9 +35,9 @@ format:   bunx prettier --write .
 
 ## Skills
 
-- Use `find-skills` for testing, review, and automation workflows
-- Use `nodejs-best-practices`, `typescript-best-practices`, or Bun-specific skills if available
-- Keep the preset aligned with the repo's actual linter and formatter
+- Use `find-skills` to discover skills matching your current task before starting
+- Install stack-specific skills only when they match the feature area
+- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

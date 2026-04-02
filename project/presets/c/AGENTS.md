@@ -36,9 +36,9 @@ format:   clang-format -i *.c *.h
 
 ## Skills
 
-- Use `find-skills` for testing, review, and build workflows
-- Add C-specific skills only when the repository adopts extra tooling
-- Keep compiler and formatter settings aligned with the project
+- Use `find-skills` to discover skills matching your current task before starting
+- Install stack-specific skills only when they match the feature area
+- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

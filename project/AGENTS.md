@@ -58,11 +58,11 @@ format:   # e.g. npm run format
 
 ## Skills And Workflow
 
-**Skills to consider before non-trivial work:**
-- discovery and setup: `find-skills`
-- planning and execution: implementation-plan / planning skills
-- debugging and verification: debugging, testing, review, and quality-gate skills
-- stack-specific: install only the skills that match this project type
+**Skills discovery:**
+- Use `find-skills` to discover relevant skills before non-trivial work
+- The `superpowers` plugin provides core workflows (planning, debugging, TDD, code review, parallel agents)
+- Install stack-specific skills only when they match this project's feature area
+- Record useful project-specific skills in this file as the project evolves
 
 **Autonomy rules:**
 - Inspect manifests, docs, and recent commits before asking questions

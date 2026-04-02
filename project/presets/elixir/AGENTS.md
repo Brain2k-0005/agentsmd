@@ -36,9 +36,9 @@ format:   mix format
 
 ## Skills
 
-- Use `find-skills` for testing, review, and automation workflows
-- Add Elixir-specific skills when the repository standardizes on a framework
-- Keep formatter and test commands aligned with the mix configuration
+- Use `find-skills` to discover skills matching your current task before starting
+- Install stack-specific skills only when they match the feature area
+- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

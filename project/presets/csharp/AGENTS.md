@@ -36,9 +36,9 @@ format:   dotnet format
 
 ## Skills
 
-- Use `aspnet-minimal-api-openapi`, `csharp-xunit`, `csharp-async`, `dotnet-best-practices`, and `ef-core` when relevant
-- Use `find-skills` for testing, review, and automation workflows
-- Add .NET-specific skills when the repository introduces extra infrastructure
+- Use `find-skills` to discover skills matching your current task before starting
+- Install stack-specific skills only when they match the feature area
+- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

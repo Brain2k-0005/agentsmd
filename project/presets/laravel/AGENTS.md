@@ -35,10 +35,9 @@ format:   vendor/bin/pint
 
 ## Skills
 
-- Use `find-skills` for testing, review, and automation workflows
-- Prefer Laravel-specific installable skills when the repo depends on common packages
-- Use `php-code-review`, `php-testing`, or `laravel-best-practices` if those skills are available
-- Keep framework conventions centralized in this preset rather than scattered
+- Use `find-skills` to discover skills matching your current task before starting
+- Install stack-specific skills only when they match the feature area
+- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

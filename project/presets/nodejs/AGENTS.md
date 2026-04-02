@@ -36,9 +36,9 @@ format:   npx prettier --write .
 
 ## Skills
 
-- Install project skills for the relevant framework or runtime only when needed
-- Use `find-skills` for debugging, testing, review, and automation workflows
-- Keep stack-specific conventions in this preset instead of spreading them across files
+- Use `find-skills` to discover skills matching your current task before starting
+- Install stack-specific skills only when they match the feature area
+- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

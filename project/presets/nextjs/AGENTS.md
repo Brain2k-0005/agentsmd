@@ -36,9 +36,9 @@ format:   npx prettier --write .
 
 ## Skills
 
-- UI work: `web-design-guidelines`, `vercel-react-best-practices`, `vercel-composition-patterns`, `shadcn`
-- Stack work: install project-specific skills only when they match the feature area
-- Review the matching preset before editing route, data, or auth code
+- Use `find-skills` to discover skills matching your current task before starting
+- Install stack-specific skills only when they match the feature area
+- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 

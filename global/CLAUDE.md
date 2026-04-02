@@ -9,16 +9,12 @@ at resolving a blocker. Never ask permission before each step - plan, execute, v
 
 ## Skill Discovery
 
-Before any non-trivial task, check for relevant skills first:
+Before any non-trivial task, check for relevant skills:
 
-- Use the Claude skill discovery workflow to find a matching skill or plugin
-- Prefer installed skills over ad hoc prompting
-- Keep broadly useful skills installed globally:
-  - discovery and setup
-  - planning and implementation
-  - debugging and testing
-  - code review and verification
-- Keep stack-specific skills at the project scope when they only apply to one repo
+- Use `find-skills` to search for skills matching the current task
+- The `superpowers` plugin provides core workflow skills (planning, debugging, TDD, code review, parallel agents)
+- For stack-specific skills, use `find-skills` to discover and install them per-project
+- Do not manually search for skills — `find-skills` handles discovery automatically
 
 ## Project Presets
 
@@ -31,12 +27,13 @@ When a repository has `project/presets/`, read the matching preset before editin
 
 ## Agent Teams
 
-For any task touching 3+ independent files or areas, use parallel agents:
+Claude Code supports parallel agent teams natively:
 
-- Create teams via the Claude Code team workflow or parallel agent skill
-- Lead agent: plans, coordinates, reviews, integrates
-- Worker agents: implement individual tasks in parallel
-- Reviewer: reviews the integrated result before marking done
+- **Lead** (Opus): Plans, coordinates, reviews, integrates — use the strongest model for this role
+- **Workers** (Sonnet): Implement individual tasks in parallel — use fast models for throughput
+- **Reviewer** (Opus, or use Codex/Gemini for cross-tool review): Validates integrated result
+- Dispatch via the `dispatching-parallel-agents` skill or `TeamCreate` tool
+- Give every agent complete context — file paths, constraints, expected output
 
 ## Token Efficiency
 
@@ -45,6 +42,15 @@ For any task touching 3+ independent files or areas, use parallel agents:
 - Batch independent tool calls in a single message
 - Use smaller agents for implementation and stronger agents for planning and review
 - No trailing summaries, no restating the question, no preamble
+
+## Cross-Tool Review
+
+When reviewing code written by another AI tool (Codex, Gemini):
+
+- Read the full diff before commenting
+- Check against the project's AGENTS.md quality gates
+- Focus on what the other tool might miss: architecture alignment, design patterns, edge cases
+- When your code is reviewed by another tool, fix flagged issues without defensiveness
 
 ## Claude Code Git Override
 

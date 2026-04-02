@@ -36,10 +36,9 @@ format:   npx prettier --write .
 
 ## Skills
 
-- Use `find-skills` for testing, review, and automation workflows
-- Add API documentation or security skills when the repo needs them
-- Use `nodejs-best-practices` and `typescript-best-practices` if the repo is TypeScript-first
-- Keep Express conventions and folder structure in this preset
+- Use `find-skills` to discover skills matching your current task before starting
+- Install stack-specific skills only when they match the feature area
+- Keep skill dependencies documented in the project root AGENTS.md
 
 ## Testing
 
