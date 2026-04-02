@@ -1,7 +1,7 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-    Autonomous Agent Setup - Configure AI CLI tools for autonomous coding.
+    agentsmd Setup - Configure AI CLI tools for autonomous coding.
 
 .DESCRIPTION
     Interactive installer for global AI CLI configs and project templates.
@@ -193,7 +193,7 @@ function Filter-Modules {
 function Print-Banner {
     Write-Host ""
     Write-Bold "============================================================"
-    Write-Bold " Autonomous Agent Setup"
+    Write-Bold " agentsmd Setup"
     Write-Bold " Configure AI CLI tools for autonomous coding"
     Write-Bold "============================================================"
     if ($DryRun) {

@@ -1,4 +1,4 @@
-# Autonomous Agent Config - Improvement Spec
+# agentsmd - Improvement Spec
 
 **Date:** 2026-04-02
 **Status:** Approved

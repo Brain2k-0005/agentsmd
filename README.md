@@ -1,4 +1,4 @@
-# Autonomous Agent Config
+# agentsmd
 
 Universal setup for AI coding agents that learn, plan, and ship code autonomously.
 
@@ -12,15 +12,15 @@ Universal setup for AI coding agents that learn, plan, and ship code autonomousl
 
 **macOS / Linux / WSL:**
 ```bash
-git clone https://github.com/Brain2k-0005/autonomous-agents.git
-cd autonomous-agents
+git clone https://github.com/Brain2k-0005/agentsmd.git
+cd agentsmd
 bash install.sh
 ```
 
 **Windows PowerShell:**
 ```powershell
-git clone https://github.com/Brain2k-0005/autonomous-agents.git
-cd autonomous-agents
+git clone https://github.com/Brain2k-0005/agentsmd.git
+cd agentsmd
 .\install.ps1
 ```
 
@@ -94,7 +94,7 @@ You install a global config once. Every project you open gets an autonomous agen
 ## Repo Structure
 
 ```
-autonomous-agents/
+agentsmd/
 ├── README.md                      # This file
 ├── install.sh                     # Bash installer (macOS/Linux/WSL)
 ├── install.ps1                    # PowerShell installer (Windows)
@@ -182,8 +182,8 @@ The agent will use `find-skills` to discover and install any additional skills i
 
 ```bash
 # Clone the repo
-git clone https://github.com/Brain2k-0005/autonomous-agents.git
-cd autonomous-agents
+git clone https://github.com/Brain2k-0005/agentsmd.git
+cd agentsmd
 
 # Interactive installer -- detects your tools and copies the right files
 bash install.sh       # macOS / Linux / WSL

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# install.sh - Autonomous Agent Setup
+# install.sh - agentsmd Setup
 # Installs global AI CLI configs and project templates
 # Usage: ./install.sh [--dry-run] [--enable-modules mod1,mod2] [--disable-modules mod1,mod2]
 
@@ -188,7 +188,7 @@ PRESET_DIR="$PROJECT_DIR/presets"
 print_banner() {
   echo ""
   bold "============================================================"
-  bold " Autonomous Agent Setup"
+  bold " agentsmd Setup"
   bold " Configure AI CLI tools for autonomous coding"
   bold "============================================================"
   if $DRY_RUN; then
